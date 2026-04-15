@@ -1,0 +1,62 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --white:    #FFFFFF;
+  --off:      #F9F8F6;
+  --stone:    #F2F0EC;
+  --border:   #E8E5E0;
+  --muted:    #9B9690;
+  --mid:      #6B6860;
+  --dark:     #2C2A27;
+  --black:    #141210;
+  --accent:   #1A1A1A;
+  --gold:     #C9A84C;
+  --gold-lt:  #E8C96A;
+
+  --serif:    'Playfair Display', Georgia, serif;
+  --sans:     'Inter', -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.fade-up-d1 { animation-delay: 0.1s; }
+.fade-up-d2 { animation-delay: 0.22s; }
+.fade-up-d3 { animation-delay: 0.34s; }
+.fade-up-d4 { animation-delay: 0.46s; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--off); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
