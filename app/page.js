@@ -201,6 +201,68 @@ function BookCard({ book, featured = false }) {
   );
 }
 
+/* ─── Field Visual (energy field SVG) ────────────────────────── */
+function FieldVisual() {
+  return (
+    <svg width="380" height="420" viewBox="0 0 380 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="fg1" cx="50%" cy="65%" r="48%">
+          <stop offset="0%" stopColor="#2255cc" stopOpacity="0.24" />
+          <stop offset="100%" stopColor="#2255cc" stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id="fg2" cx="50%" cy="65%" r="52%">
+          <stop offset="0%" stopColor="#3a6fec" stopOpacity="0.07" />
+          <stop offset="100%" stopColor="#3a6fec" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      {/* Outer ambient glow */}
+      <ellipse cx="190" cy="272" rx="175" ry="158" fill="url(#fg2)" />
+      <ellipse cx="190" cy="272" rx="128" ry="116" fill="url(#fg1)" />
+
+      {/* Concentric field rings */}
+      <circle cx="190" cy="272" r="132" stroke="rgba(34,85,204,0.06)" strokeWidth="1" />
+      <circle cx="190" cy="272" r="98"  stroke="rgba(34,85,204,0.09)" strokeWidth="1" />
+      <circle cx="190" cy="272" r="65"  stroke="rgba(34,85,204,0.14)" strokeWidth="1.5" />
+      <circle cx="190" cy="272" r="34"  stroke="rgba(58,111,236,0.22)" strokeWidth="1.5" fill="rgba(34,85,204,0.07)" />
+
+      {/* Non-matching white streaks — pass straight through */}
+      <line x1="28"  y1="0"  x2="28"  y2="390" stroke="rgba(255,255,255,0.2)"  strokeWidth="1.3" strokeLinecap="round" />
+      <line x1="50"  y1="12" x2="48"  y2="400" stroke="rgba(255,255,255,0.11)" strokeWidth="0.8" />
+      <line x1="338" y1="4"  x2="340" y2="395" stroke="rgba(255,255,255,0.2)"  strokeWidth="1.3" strokeLinecap="round" />
+      <line x1="316" y1="18" x2="318" y2="400" stroke="rgba(255,255,255,0.11)" strokeWidth="0.8" />
+      <line x1="148" y1="0"  x2="144" y2="390" stroke="rgba(255,255,255,0.06)" strokeWidth="0.7" />
+      <line x1="240" y1="6"  x2="244" y2="390" stroke="rgba(255,255,255,0.06)" strokeWidth="0.7" />
+
+      {/* Non-matching yellow / orange streaks */}
+      <line x1="272" y1="0"  x2="278" y2="330" stroke="rgba(255,214,0,0.18)"  strokeWidth="1"   strokeLinecap="round" />
+      <line x1="94"  y1="18" x2="88"  y2="340" stroke="rgba(255,107,0,0.16)"  strokeWidth="0.9" strokeLinecap="round" />
+      <line x1="300" y1="25" x2="305" y2="300" stroke="rgba(255,214,0,0.1)"   strokeWidth="0.7" />
+
+      {/* Matching blue streaks — curving toward figure */}
+      <path d="M 62 12 Q 68 185 190 270"  stroke="#3a6fec" strokeWidth="2"   strokeLinecap="round" opacity="0.88" />
+      <path d="M 320 8 Q 312 180 190 270" stroke="#3a6fec" strokeWidth="2"   strokeLinecap="round" opacity="0.82" />
+      <path d="M 118 6 Q 128 188 190 270" stroke="#3a6fec" strokeWidth="1.3" strokeLinecap="round" opacity="0.62" />
+      <path d="M 264 14 Q 254 182 190 270" stroke="#3a6fec" strokeWidth="1.3" strokeLinecap="round" opacity="0.58" />
+
+      {/* Glowing endpoints on matching streaks */}
+      <circle cx="62"  cy="12" r="2.5" fill="#3a6fec" opacity="0.55" />
+      <circle cx="320" cy="8"  r="2.5" fill="#3a6fec" opacity="0.5"  />
+
+      {/* Stick figure */}
+      <circle cx="190" cy="244" r="13"  stroke="#3a6fec" strokeWidth="2.2" />
+      <line x1="190" y1="257" x2="190" y2="283" stroke="#3a6fec" strokeWidth="2.2" strokeLinecap="round" />
+      <line x1="172" y1="267" x2="208" y2="267" stroke="#3a6fec" strokeWidth="2.2" strokeLinecap="round" />
+      <line x1="190" y1="283" x2="178" y2="305" stroke="#3a6fec" strokeWidth="2.2" strokeLinecap="round" />
+      <line x1="190" y1="283" x2="202" y2="305" stroke="#3a6fec" strokeWidth="2.2" strokeLinecap="round" />
+
+      {/* Absorption glow at center */}
+      <circle cx="190" cy="272" r="18" fill="rgba(34,85,204,0.4)"  />
+      <circle cx="190" cy="272" r="6"  fill="rgba(58,111,236,0.85)" />
+    </svg>
+  );
+}
+
 /* ─── Ticker ─────────────────────────────────────────────────── */
 function Ticker() {
   const items = [...ticker, ...ticker];
@@ -635,6 +697,90 @@ export default function MentalFuPage() {
                   }}>{line}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TRY THE FIELD ── */}
+      <section id="the-field" style={{
+        padding: "8rem 5vw", background: OFF,
+        position: "relative", overflow: "hidden",
+      }}>
+        <div style={{
+          position: "absolute", right: "-2%", top: "50%",
+          transform: "translateY(-50%)",
+          fontFamily: SERIF, fontSize: "clamp(160px, 20vw, 280px)",
+          fontWeight: 700, color: "rgba(0,0,0,0.03)",
+          userSelect: "none", lineHeight: 1,
+        }}>場</div>
+
+        <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
+          <div style={{
+            display: "grid", gridTemplateColumns: "1fr 1fr",
+            gap: "6rem", alignItems: "center",
+          }}>
+            {/* Left: text */}
+            <div>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem" }}>
+                <div style={{ width: 20, height: 1, background: GOLD }} />
+                <span style={{ fontSize: "0.68rem", fontFamily: SANS, fontWeight: 600,
+                  letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD }}>
+                  The Gravity Well
+                </span>
+              </div>
+
+              <h2 style={{ fontFamily: SERIF, fontWeight: 700,
+                fontSize: "clamp(1.9rem, 3.5vw, 3rem)",
+                lineHeight: 1.15, letterSpacing: "-0.02em",
+                color: BLACK, marginBottom: "1.5rem" }}>
+                You have a field.<br />
+                <em style={{ color: MID, fontWeight: 400 }}>Most people don't know it.</em>
+              </h2>
+
+              <p style={{ fontSize: "0.98rem", color: MID, lineHeight: 1.9,
+                fontWeight: 300, marginBottom: "1.25rem", maxWidth: 480 }}>
+                Your inner state creates an invisible field — what MentalFu calls a{" "}
+                <em style={{ color: DARK }}>Gravity Well</em>. It determines which
+                experiences bend toward you, which ones get absorbed, and which ones
+                pass through your life without ever reaching you.
+              </p>
+
+              <p style={{ fontSize: "0.93rem", color: MUTED, lineHeight: 1.85,
+                fontWeight: 300, marginBottom: "2.5rem", maxWidth: 460 }}>
+                All kinds of experiences are always falling. Conversations. Opportunities.
+                Ideas. Only what matches your current state actually bends toward you and
+                enters your system. The rest passes through — present, but invisible.
+                The field can be changed, but only from within.
+              </p>
+
+              <a href="/try-the-field"
+                style={{
+                  display: "inline-block",
+                  background: BLACK, color: WHITE,
+                  padding: "0.9rem 2rem", borderRadius: 4,
+                  fontFamily: SANS, fontWeight: 600,
+                  fontSize: "0.85rem", letterSpacing: "0.05em",
+                  transition: "background 0.18s",
+                  boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = "#3D3B38"}
+                onMouseLeave={e => e.currentTarget.style.background = BLACK}>
+                Try The Field →
+              </a>
+            </div>
+
+            {/* Right: energy field visual */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{
+                background: BLACK,
+                borderRadius: 16,
+                padding: "1rem",
+                boxShadow: "0 24px 64px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.04)",
+                display: "inline-flex",
+              }}>
+                <FieldVisual />
+              </div>
             </div>
           </div>
         </div>
