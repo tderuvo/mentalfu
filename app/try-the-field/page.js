@@ -26,7 +26,7 @@ const STEPS = [
     allowAbsorption: false,
     gwColor: 'darkblue',
     weightedColors: null,
-    nonMatchAlpha: 0.62,
+    nonMatchAlpha: 0.7,
     freeMode: false,
   },
   {
@@ -38,8 +38,8 @@ const STEPS = [
     allowAbsorption: false,
     gwColor: 'darkblue',
     weightedColors: null,
-    nonMatchAlpha: 0.38,
-    matchAlpha: 0.32,
+    nonMatchAlpha: 0.32,
+    matchAlpha: 0.28,
     freeMode: false,
   },
   {
@@ -51,7 +51,7 @@ const STEPS = [
     allowAbsorption: false,
     gwColor: 'darkblue',
     weightedColors: null,
-    nonMatchAlpha: 0.35,
+    nonMatchAlpha: 0.28,
     freeMode: false,
   },
   {
@@ -63,7 +63,7 @@ const STEPS = [
     allowAbsorption: true,
     gwColor: 'darkblue',
     weightedColors: null,
-    nonMatchAlpha: 0.35,
+    nonMatchAlpha: 0.28,
     freeMode: false,
   },
   {
@@ -74,9 +74,8 @@ const STEPS = [
     allowCurve: false,
     allowAbsorption: false,
     gwColor: 'darkblue',
-    // heavily weighted toward white — opportunity everywhere, none connecting
     weightedColors: ['white', 'white', 'white', 'white', 'yellow', 'orange', 'darkblue'],
-    nonMatchAlpha: 0.75,
+    nonMatchAlpha: 0.8,
     freeMode: false,
   },
   {
@@ -86,9 +85,9 @@ const STEPS = [
     rain: true,
     allowCurve: true,
     allowAbsorption: true,
-    gwColor: null,  // user-controlled
+    gwColor: null,
     weightedColors: null,
-    nonMatchAlpha: 0.45,
+    nonMatchAlpha: 0.38,
     freeMode: true,
   },
 ]
@@ -96,25 +95,62 @@ const STEPS = [
 // ─── Color Constants ──────────────────────────────────────────────────────────
 
 const GW_OPTIONS = [
-  { label: 'Dark Blue', value: 'darkblue', hex: '#1a3a6b', glow: '#2255cc' },
-  { label: 'Cyan',      value: 'cyan',     hex: '#00bcd4', glow: '#00e5ff' },
-  { label: 'Green',     value: 'green',    hex: '#2e7d32', glow: '#00e676' },
-  { label: 'Orange',    value: 'orange',   hex: '#e65100', glow: '#ff9800' },
-  { label: 'Yellow',    value: 'yellow',   hex: '#f9a825', glow: '#ffee58' },
-  { label: 'White',     value: 'white',    hex: '#e0e0e0', glow: '#ffffff' },
+  { label: 'Dark Blue', value: 'darkblue', hex: '#1E3FAA', glow: '#1E5BFF' },
+  { label: 'Cyan',      value: 'cyan',     hex: '#0B8FAA', glow: '#21D4FD' },
+  { label: 'Green',     value: 'green',    hex: '#15884A', glow: '#36D17C' },
+  { label: 'Orange',    value: 'orange',   hex: '#BB6815', glow: '#FF9F2E' },
+  { label: 'Yellow',    value: 'yellow',   hex: '#A89018', glow: '#F7D84A' },
+  { label: 'White',     value: 'white',    hex: '#909090', glow: '#EAEAEA' },
 ]
 
 const RAIN_COLORS = [
-  { value: 'darkblue', hex: '#2255cc', streak: '#3a6fec' },
-  { value: 'cyan',     hex: '#00bcd4', streak: '#26d9f0' },
-  { value: 'green',    hex: '#00c853', streak: '#40e070' },
-  { value: 'orange',   hex: '#ff6d00', streak: '#ff9533' },
-  { value: 'yellow',   hex: '#ffd600', streak: '#ffe84d' },
-  { value: 'white',    hex: '#e8e8e8', streak: '#ffffff' },
+  { value: 'darkblue', hex: '#1533AA', streak: '#1E5BFF' },
+  { value: 'cyan',     hex: '#0E96B0', streak: '#21D4FD' },
+  { value: 'green',    hex: '#1A9452', streak: '#36D17C' },
+  { value: 'orange',   hex: '#C07018', streak: '#FF9F2E' },
+  { value: 'yellow',   hex: '#B89A20', streak: '#F7D84A' },
+  { value: 'white',    hex: '#A0A0A0', streak: '#EAEAEA' },
 ]
 
-const PARTICLE_COUNT = 72
+// ─── Depth Layer Config ───────────────────────────────────────────────────────
+
+const LAYERS = [
+  // 0 — far: faint, thin, slow, minimal drift
+  {
+    speedMin: 0.26, speedMax: 0.42,
+    lengthMin: 8,   lengthMax: 18,
+    lineWidth: 0.65,
+    glowMult: 0.07,
+    opacityMin: 0.16, opacityMax: 0.32,
+    driftAmpMin: 0.1, driftAmpMax: 0.35,
+    driftFreqMin: 0.00025, driftFreqMax: 0.00060,
+  },
+  // 1 — mid: medium, moderate glow
+  {
+    speedMin: 0.42, speedMax: 0.62,
+    lengthMin: 18,  lengthMax: 32,
+    lineWidth: 1.05,
+    glowMult: 0.11,
+    opacityMin: 0.34, opacityMax: 0.54,
+    driftAmpMin: 0.25, driftAmpMax: 0.65,
+    driftFreqMin: 0.00040, driftFreqMax: 0.00085,
+  },
+  // 2 — near: thicker, brighter, slightly faster
+  {
+    speedMin: 0.62, speedMax: 0.90,
+    lengthMin: 30,  lengthMax: 46,
+    lineWidth: 1.6,
+    glowMult: 0.16,
+    opacityMin: 0.52, opacityMax: 0.76,
+    driftAmpMin: 0.35, driftAmpMax: 0.85,
+    driftFreqMin: 0.00055, driftFreqMax: 0.00110,
+  },
+]
+
+const PARTICLE_COUNT = 30   // 10 far + 10 mid + 10 near
 const CANVAS_HEIGHT  = 520
+const FADE_IN_PX     = 90
+const FADE_OUT_PX    = 60
 
 // ─── Particle System ──────────────────────────────────────────────────────────
 
@@ -124,152 +160,193 @@ function pickColor(weightedColors) {
   return RAIN_COLORS.find(c => c.value === val) ?? RAIN_COLORS[0]
 }
 
-function createParticle(canvasWidth, weightedColors) {
+function layerFromIndex(i) {
+  if (i < 10) return 0
+  if (i < 20) return 1
+  return 2
+}
+
+function layerRandom() {
+  const r = Math.random()
+  return r < 0.34 ? 0 : r < 0.67 ? 1 : 2
+}
+
+function buildParticle(canvasWidth, layer, weightedColors, stagger) {
+  const cfg = LAYERS[layer]
   return {
-    id: Math.random(),
-    x: (Math.random() * canvasWidth * 1.1) - (canvasWidth * 0.05),
-    y: -Math.random() * CANVAS_HEIGHT * 1.2,
-    speed: 1.4 + Math.random() * 1.8,
-    length: 14 + Math.random() * 22,
-    opacity: 0.55 + Math.random() * 0.35,
-    color: pickColor(weightedColors),
-    absorbed: false,
-    absorbing: false,
+    x: (Math.random() * canvasWidth * 1.06) - (canvasWidth * 0.03),
+    y: stagger
+      ? -Math.random() * CANVAS_HEIGHT * 1.3
+      : -(cfg.lengthMax + Math.random() * 50),
+    speed:      cfg.speedMin   + Math.random() * (cfg.speedMax   - cfg.speedMin),
+    length:     cfg.lengthMin  + Math.random() * (cfg.lengthMax  - cfg.lengthMin),
+    layer,
+    baseOpacity: cfg.opacityMin + Math.random() * (cfg.opacityMax - cfg.opacityMin),
+    color:      pickColor(weightedColors),
+    driftPhase: Math.random() * Math.PI * 2,
+    driftAmp:   cfg.driftAmpMin + Math.random() * (cfg.driftAmpMax - cfg.driftAmpMin),
+    driftFreq:  cfg.driftFreqMin + Math.random() * (cfg.driftFreqMax - cfg.driftFreqMin),
+    absorbed:   false,
+    absorbing:  false,
     absorbProgress: 0,
   }
 }
 
+function createParticle(canvasWidth, index, weightedColors) {
+  return buildParticle(canvasWidth, layerFromIndex(index), weightedColors, true)
+}
+
 function resetParticle(p, canvasWidth, weightedColors, stagger = false) {
-  p.id = Math.random()
-  p.x = (Math.random() * canvasWidth * 1.1) - (canvasWidth * 0.05)
-  p.y = stagger ? -Math.random() * CANVAS_HEIGHT * 1.2 : -Math.random() * 60
-  p.speed = 1.4 + Math.random() * 1.8
-  p.length = 14 + Math.random() * 22
-  p.opacity = 0.55 + Math.random() * 0.35
-  p.color = pickColor(weightedColors)
-  p.absorbed = false
-  p.absorbing = false
+  const layer = layerRandom()
+  const cfg   = LAYERS[layer]
+  p.x           = (Math.random() * canvasWidth * 1.06) - (canvasWidth * 0.03)
+  p.y           = stagger ? -Math.random() * CANVAS_HEIGHT * 1.3 : -(cfg.lengthMax + Math.random() * 50)
+  p.speed       = cfg.speedMin  + Math.random() * (cfg.speedMax  - cfg.speedMin)
+  p.length      = cfg.lengthMin + Math.random() * (cfg.lengthMax - cfg.lengthMin)
+  p.layer       = layer
+  p.baseOpacity = cfg.opacityMin + Math.random() * (cfg.opacityMax - cfg.opacityMin)
+  p.color       = pickColor(weightedColors)
+  p.driftPhase  = Math.random() * Math.PI * 2
+  p.driftAmp    = cfg.driftAmpMin + Math.random() * (cfg.driftAmpMax - cfg.driftAmpMin)
+  p.driftFreq   = cfg.driftFreqMin + Math.random() * (cfg.driftFreqMax - cfg.driftFreqMin)
+  p.absorbed    = false
+  p.absorbing   = false
   p.absorbProgress = 0
+}
+
+// ─── Drawing Helper ───────────────────────────────────────────────────────────
+
+function drawStreak(ctx, x, topY, bottomY, color, opacity, layer) {
+  if (opacity <= 0.015) return
+  const cfg = LAYERS[layer]
+  ctx.lineCap = 'round'
+
+  // Wide outer glow
+  ctx.globalAlpha = Math.min(1, opacity * cfg.glowMult * 1.4)
+  ctx.strokeStyle = color.streak
+  ctx.lineWidth   = cfg.lineWidth + 7
+  ctx.beginPath(); ctx.moveTo(x, topY); ctx.lineTo(x, bottomY); ctx.stroke()
+
+  // Tight mid glow
+  ctx.globalAlpha = Math.min(1, opacity * cfg.glowMult * 2.6)
+  ctx.strokeStyle = color.streak
+  ctx.lineWidth   = cfg.lineWidth + 2.5
+  ctx.beginPath(); ctx.moveTo(x, topY); ctx.lineTo(x, bottomY); ctx.stroke()
+
+  // Core — vertical gradient: transparent → bright → transparent
+  const grad = ctx.createLinearGradient(x, topY, x, bottomY)
+  grad.addColorStop(0,    hexToRgba(color.streak, 0))
+  grad.addColorStop(0.18, hexToRgba(color.streak, opacity * 0.72))
+  grad.addColorStop(0.48, hexToRgba(color.streak, opacity))
+  grad.addColorStop(0.80, hexToRgba(color.streak, opacity * 0.60))
+  grad.addColorStop(1,    hexToRgba(color.streak, 0))
+
+  ctx.globalAlpha = 1
+  ctx.strokeStyle = grad
+  ctx.lineWidth   = cfg.lineWidth
+  ctx.beginPath(); ctx.moveTo(x, topY); ctx.lineTo(x, bottomY); ctx.stroke()
 }
 
 // ─── Renderer ─────────────────────────────────────────────────────────────────
 
 function renderFrame({ ctx, particles, canvasWidth, canvasHeight, gwColor, auraIntensity, stepCfg, fieldStrength }) {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.82)'
+  // Near-full clear — gradient handles streak appearance, no heavy trails
+  ctx.fillStyle = 'rgba(0,0,0,0.93)'
   ctx.fillRect(0, 0, canvasWidth, canvasHeight)
 
   const figureX = canvasWidth / 2
   const figureY = canvasHeight - 72
+
+  // Radial vignette — darker at edges, transparent near figure
+  const vig = ctx.createRadialGradient(figureX, figureY, 0, figureX, canvasHeight * 0.48, canvasWidth * 0.7)
+  vig.addColorStop(0,    'rgba(0,0,0,0)')
+  vig.addColorStop(0.55, 'rgba(0,0,0,0.06)')
+  vig.addColorStop(1,    'rgba(0,0,0,0.45)')
+  ctx.fillStyle = vig
+  ctx.fillRect(0, 0, canvasWidth, canvasHeight)
+
   const auraGw  = GW_OPTIONS.find(g => g.value === gwColor)
   const auraCol = auraGw?.glow ?? '#ffffff'
-  const gwHex   = auraGw?.hex  ?? '#ffffff'
+  const gwHex   = auraGw?.hex  ?? '#888888'
 
-  // Aura glow
-  const intensity = 0.28 + Math.min(auraIntensity * 0.18, 0.55)
-  for (let r = 3; r >= 1; r--) {
-    const grad = ctx.createRadialGradient(figureX, figureY - 12, 0, figureX, figureY - 12, 58 + r * 14)
-    grad.addColorStop(0, hexToRgba(auraCol, intensity * (1.2 - r * 0.22)))
-    grad.addColorStop(1, 'transparent')
-    ctx.fillStyle = grad
+  // Breathing aura — slow sine pulse ~8s cycle
+  const t        = performance.now()
+  const breathe  = 0.5 + 0.5 * Math.sin(t * 0.00072)
+  const baseI    = 0.13 + breathe * 0.055
+  const intensity = baseI + Math.min(auraIntensity * 0.15, 0.42)
+
+  // Four aura layers: wide diffuse → tight inner
+  ;[
+    { r: 118, as: 0.28 },
+    { r: 76,  as: 0.50 },
+    { r: 44,  as: 0.68 },
+    { r: 20,  as: 0.38 },
+  ].forEach(({ r, as }) => {
+    const g = ctx.createRadialGradient(figureX, figureY - 15, 0, figureX, figureY - 15, r)
+    g.addColorStop(0,   hexToRgba(auraCol, intensity * as))
+    g.addColorStop(0.5, hexToRgba(auraCol, intensity * as * 0.42))
+    g.addColorStop(1,   'rgba(0,0,0,0)')
+    ctx.fillStyle = g
     ctx.beginPath()
-    ctx.arc(figureX, figureY - 12, 58 + r * 14, 0, Math.PI * 2)
+    ctx.arc(figureX, figureY - 15, r, 0, Math.PI * 2)
     ctx.fill()
-  }
+  })
 
   // Stick figure
   ctx.strokeStyle = gwHex
-  ctx.lineWidth = 1.8
+  ctx.lineWidth   = 1.8
   ctx.shadowColor = auraCol
-  ctx.shadowBlur = 8
+  ctx.shadowBlur  = 12
+  ctx.lineCap     = 'round'
 
-  ctx.beginPath()
-  ctx.arc(figureX, figureY - 42, 9, 0, Math.PI * 2)
-  ctx.stroke()
-
-  ctx.beginPath()
-  ctx.moveTo(figureX, figureY - 33)
-  ctx.lineTo(figureX, figureY - 8)
-  ctx.stroke()
-
-  ctx.beginPath()
-  ctx.moveTo(figureX - 14, figureY - 26)
-  ctx.lineTo(figureX + 14, figureY - 26)
-  ctx.stroke()
-
-  ctx.beginPath()
-  ctx.moveTo(figureX, figureY - 8)
-  ctx.lineTo(figureX - 11, figureY + 8)
-  ctx.stroke()
-
-  ctx.beginPath()
-  ctx.moveTo(figureX, figureY - 8)
-  ctx.lineTo(figureX + 11, figureY + 8)
-  ctx.stroke()
+  ctx.beginPath(); ctx.arc(figureX, figureY - 42, 9, 0, Math.PI * 2); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(figureX, figureY - 33); ctx.lineTo(figureX, figureY - 8); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(figureX - 14, figureY - 26); ctx.lineTo(figureX + 14, figureY - 26); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(figureX, figureY - 8); ctx.lineTo(figureX - 11, figureY + 8); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(figureX, figureY - 8); ctx.lineTo(figureX + 11, figureY + 8); ctx.stroke()
 
   ctx.shadowBlur = 0
 
   if (!stepCfg.rain) return
 
-  const nonMatchAlpha = stepCfg.nonMatchAlpha ?? 0.45
+  const nonMatchAlpha = stepCfg.nonMatchAlpha ?? 0.38
   const matchAlpha    = stepCfg.matchAlpha    ?? 1.0
-  const curveZone     = canvasHeight * 0.55
+  const curveZone     = canvasHeight * 0.52
+  const now           = performance.now()
 
-  // Rain particles
-  particles.forEach(p => {
+  // Draw far → near for natural depth layering
+  const sorted = [...particles].sort((a, b) => a.layer - b.layer)
+
+  sorted.forEach(p => {
     if (p.absorbed) return
 
     const isMatch = p.color.value === gwColor
+    const driftX  = p.driftAmp * Math.sin(p.driftPhase + now * p.driftFreq)
 
-    // Absorbing fade-out
-    if (p.absorbing) {
-      const alpha = Math.max(0, 1 - p.absorbProgress * 2.5) * p.opacity
-      ctx.globalAlpha = alpha
-      ctx.strokeStyle = p.color.streak
-      ctx.lineWidth = 1.5
-      ctx.shadowColor = p.color.hex
-      ctx.shadowBlur = 6
-      ctx.beginPath()
-      ctx.moveTo(p.x, p.y)
-      ctx.lineTo(p.x, p.y - p.length * (1 - p.absorbProgress))
-      ctx.stroke()
-      ctx.shadowBlur = 0
-      ctx.globalAlpha = 1
-      return
-    }
-
-    // Non-matching: straight fall
-    if (!isMatch) {
-      ctx.globalAlpha = p.opacity * nonMatchAlpha
-      ctx.strokeStyle = p.color.streak
-      ctx.lineWidth = 1.2
-      ctx.beginPath()
-      ctx.moveTo(p.x, p.y)
-      ctx.lineTo(p.x, p.y - p.length)
-      ctx.stroke()
-      ctx.globalAlpha = 1
-      return
-    }
-
-    // Matching: optionally curve toward figure
-    let drawX = p.x
-    if (stepCfg.allowCurve && p.y > curveZone) {
+    let drawX = p.x + driftX
+    if (isMatch && stepCfg.allowCurve && p.y > curveZone) {
       const progress = (p.y - curveZone) / (canvasHeight - curveZone)
-      const ease = progress * progress * progress
-      const pull = (figureX - p.x) * ease * 0.72 * (fieldStrength / 50)
-      drawX = p.x + pull
+      const ease     = progress * progress * progress
+      drawX = p.x + driftX + (figureX - p.x) * ease * 0.72 * (fieldStrength / 50)
     }
 
-    ctx.globalAlpha = p.opacity * matchAlpha
-    ctx.strokeStyle = p.color.streak
-    ctx.lineWidth = 1.8
-    ctx.shadowColor = p.color.hex
-    ctx.shadowBlur = 7
-    ctx.beginPath()
-    ctx.moveTo(drawX, p.y)
-    ctx.lineTo(drawX, p.y - p.length)
-    ctx.stroke()
-    ctx.shadowBlur = 0
-    ctx.globalAlpha = 1
+    // Fade in at top, fade out at bottom
+    const topFade    = Math.min(1, Math.max(0, (p.y + p.length) / FADE_IN_PX))
+    const bottomFade = Math.min(1, Math.max(0, (canvasHeight - FADE_OUT_PX - p.y) / FADE_OUT_PX))
+    const lifeFade   = Math.min(topFade, bottomFade)
+
+    if (p.absorbing) {
+      const absorbFade = Math.max(0, 1 - p.absorbProgress * 2.0)
+      const opacity    = p.baseOpacity * absorbFade * lifeFade
+      const shrink     = 1 - p.absorbProgress * 0.5
+      drawStreak(ctx, drawX, p.y - p.length * shrink, p.y, p.color, opacity, p.layer)
+      return
+    }
+
+    const baseAlpha = isMatch ? p.baseOpacity * matchAlpha : p.baseOpacity * nonMatchAlpha
+    const opacity   = baseAlpha * lifeFade
+
+    drawStreak(ctx, drawX, p.y - p.length, p.y, p.color, opacity, p.layer)
   })
 }
 
@@ -280,13 +357,14 @@ function updateParticles({ particles, canvasWidth, canvasHeight, gwColor, fieldS
 
   const figureX   = canvasWidth / 2
   const figureY   = canvasHeight - 72
-  const curveZone = canvasHeight * 0.55
+  const curveZone = canvasHeight * 0.52
+  const now       = performance.now()
 
   particles.forEach(p => {
     if (p.absorbed) return
 
     if (p.absorbing) {
-      p.absorbProgress += 0.045
+      p.absorbProgress += 0.024  // slow, graceful fade
       if (p.absorbProgress >= 1) {
         p.absorbed = true
         resetParticle(p, canvasWidth, stepCfg.weightedColors)
@@ -295,27 +373,28 @@ function updateParticles({ particles, canvasWidth, canvasHeight, gwColor, fieldS
     }
 
     const isMatch = p.color.value === gwColor
-    let curvedX = p.x
+    const driftX  = p.driftAmp * Math.sin(p.driftPhase + now * p.driftFreq)
+    let curvedX   = p.x + driftX
 
     if (isMatch && stepCfg.allowCurve && p.y > curveZone) {
       const progress = (p.y - curveZone) / (canvasHeight - curveZone)
-      const ease = progress * progress * progress
-      curvedX = p.x + (figureX - p.x) * ease * 0.72 * (fieldStrength / 50)
+      const ease     = progress * progress * progress
+      curvedX = p.x + driftX + (figureX - p.x) * ease * 0.72 * (fieldStrength / 50)
     }
 
     p.y += p.speed
 
     if (isMatch && stepCfg.allowAbsorption) {
       const dist = Math.hypot(curvedX - figureX, p.y - figureY)
-      if (dist < 28) {
+      if (dist < 26) {
         p.absorbing = true
-        auraIntensityRef.current = Math.min(auraIntensityRef.current + 0.9, 6)
+        auraIntensityRef.current = Math.min(auraIntensityRef.current + 0.75, 5)
         pulseRef.current = 1
         return
       }
     }
 
-    if (p.y > canvasHeight + 20) {
+    if (p.y > canvasHeight + p.length + 12) {
       resetParticle(p, canvasWidth, stepCfg.weightedColors)
     }
   })
@@ -327,7 +406,7 @@ function hexToRgba(hex, alpha) {
   const r = parseInt(hex.slice(1, 3), 16)
   const g = parseInt(hex.slice(3, 5), 16)
   const b = parseInt(hex.slice(5, 7), 16)
-  return `rgba(${r},${g},${b},${alpha})`
+  return `rgba(${r},${g},${b},${Math.max(0, Math.min(1, alpha))})`
 }
 
 // ─── Main Component ───────────────────────────────────────────────────────────
@@ -349,8 +428,7 @@ export default function TryTheField() {
 
   useEffect(() => { runningRef.current = running }, [running])
 
-  // Derive active gwColor: step overrides unless free mode
-  const stepCfg      = STEPS[currentStep - 1]
+  const stepCfg       = STEPS[currentStep - 1]
   const activeGwColor = stepCfg.gwColor ?? gwColor
   stepCfgRef.current  = stepCfg
 
@@ -358,8 +436,8 @@ export default function TryTheField() {
   useEffect(() => {
     const w = canvasRef.current?.parentElement?.offsetWidth || 800
     setCanvasWidth(w)
-    particlesRef.current = Array.from({ length: PARTICLE_COUNT }, () =>
-      createParticle(w, STEPS[0].weightedColors)
+    particlesRef.current = Array.from({ length: PARTICLE_COUNT }, (_, i) =>
+      createParticle(w, i, STEPS[0].weightedColors)
     )
   }, [])
 
@@ -378,7 +456,7 @@ export default function TryTheField() {
     return () => ro.disconnect()
   }, [])
 
-  // Animation loop — re-runs when canvas size, gw, or field strength change
+  // Animation loop
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -402,8 +480,8 @@ export default function TryTheField() {
         })
       }
 
-      auraIntensity.current = Math.max(0, auraIntensity.current - 0.035)
-      pulseRef.current      = Math.max(0, pulseRef.current      - 0.06)
+      auraIntensity.current = Math.max(0, auraIntensity.current - 0.022)
+      pulseRef.current      = Math.max(0, pulseRef.current      - 0.04)
 
       renderFrame({
         ctx,
@@ -421,8 +499,7 @@ export default function TryTheField() {
     return () => cancelAnimationFrame(rafRef.current)
   }, [canvasWidth, gwColor, fieldStrength])
 
-  // ── Step navigation ──────────────────────────────────────────────────────────
-
+  // Step navigation
   const applyStep = useCallback((n, stagger = false) => {
     const cfg = STEPS[n - 1]
     auraIntensity.current = 0
@@ -447,34 +524,23 @@ export default function TryTheField() {
   return (
     <div style={S.page}>
 
-      {/* Header */}
       <div style={S.header}>
         <h1 style={S.title}>Try The Field</h1>
         <p style={S.subtitle}>See how your inner state shapes what reaches you.</p>
       </div>
 
-      {/* Canvas */}
       <div style={S.canvasWrap}>
-        <canvas
-          ref={canvasRef}
-          width={canvasWidth}
-          height={CANVAS_HEIGHT}
-          style={S.canvas}
-        />
+        <canvas ref={canvasRef} width={canvasWidth} height={CANVAS_HEIGHT} style={S.canvas} />
       </div>
 
-      {/* Step info */}
       <div style={S.stepBox}>
         <div style={S.stepCounter}>
           {Array.from({ length: 7 }, (_, i) => (
-            <span
-              key={i}
-              style={{
-                ...S.stepDot,
-                background: i + 1 === currentStep ? activeGw?.glow ?? '#fff' : '#2a2a2a',
-                boxShadow: i + 1 === currentStep ? `0 0 8px ${activeGw?.glow ?? '#fff'}88` : 'none',
-              }}
-            />
+            <span key={i} style={{
+              ...S.stepDot,
+              background: i + 1 === currentStep ? activeGw?.glow ?? '#fff' : '#2a2a2a',
+              boxShadow:  i + 1 === currentStep ? `0 0 8px ${activeGw?.glow ?? '#fff'}88` : 'none',
+            }} />
           ))}
         </div>
         <div style={{ ...S.stepNum, color: activeGw?.glow ?? '#888' }}>
@@ -484,13 +550,9 @@ export default function TryTheField() {
         <p style={S.stepText}>{stepCfg.text}</p>
       </div>
 
-      {/* Navigation */}
       <div style={S.nav}>
-        <button
-          onClick={handleBack}
-          disabled={currentStep === 1}
-          style={{ ...S.navBtn, opacity: currentStep === 1 ? 0.25 : 1 }}
-        >
+        <button onClick={handleBack} disabled={currentStep === 1}
+          style={{ ...S.navBtn, opacity: currentStep === 1 ? 0.25 : 1 }}>
           ← Back
         </button>
         <button onClick={handleReplay} style={{ ...S.navBtn, ...S.replayBtn }}>
@@ -502,7 +564,8 @@ export default function TryTheField() {
           </button>
         )}
         {currentStep < 7 ? (
-          <button onClick={handleNext} style={{ ...S.navBtn, ...S.nextBtn, borderColor: activeGw?.glow ?? '#555', color: activeGw?.glow ?? '#aaa' }}>
+          <button onClick={handleNext}
+            style={{ ...S.navBtn, ...S.nextBtn, borderColor: activeGw?.glow ?? '#555', color: activeGw?.glow ?? '#aaa' }}>
             Next →
           </button>
         ) : (
@@ -512,25 +575,21 @@ export default function TryTheField() {
         )}
       </div>
 
-      {/* Controls — only in free mode (step 7) */}
       {stepCfg.freeMode && (
         <div style={S.controls}>
           <div style={S.controlGroup}>
             <label style={S.controlLabel}>Gravity Well</label>
             <div style={S.gwButtons}>
               {GW_OPTIONS.map(gw => (
-                <button
-                  key={gw.value}
-                  onClick={() => handleGwChange(gw.value)}
-                  aria-label={gw.label}
-                  title={gw.label}
+                <button key={gw.value} onClick={() => handleGwChange(gw.value)}
+                  aria-label={gw.label} title={gw.label}
                   style={{
                     ...S.gwBtn,
-                    background: gw.hex,
-                    outline: gwColor === gw.value ? `2px solid ${gw.glow}` : '2px solid transparent',
-                    boxShadow: gwColor === gw.value ? `0 0 10px ${gw.glow}88` : 'none',
-                  }}
-                />
+                    background: gw.glow,
+                    outline:    gwColor === gw.value ? `2px solid ${gw.glow}` : '2px solid transparent',
+                    boxShadow:  gwColor === gw.value ? `0 0 12px ${gw.glow}88` : 'none',
+                    opacity:    gwColor === gw.value ? 1 : 0.45,
+                  }} />
               ))}
             </div>
             <span style={{ ...S.gwLabel, color: activeGw?.glow }}>
@@ -540,14 +599,9 @@ export default function TryTheField() {
 
           <div style={S.controlGroup}>
             <label style={S.controlLabel}>Field Strength</label>
-            <input
-              type="range"
-              min={10}
-              max={100}
-              value={fieldStrength}
+            <input type="range" min={10} max={100} value={fieldStrength}
               onChange={e => setFieldStrength(Number(e.target.value))}
-              style={S.slider}
-            />
+              style={S.slider} />
           </div>
 
           <div style={S.controlGroup}>
@@ -555,9 +609,11 @@ export default function TryTheField() {
               {running ? 'Pause' : 'Resume'}
             </button>
             <button
-              onClick={() => { auraIntensity.current = 0; particlesRef.current.forEach(p => resetParticle(p, canvasWidth, null, true)) }}
-              style={{ ...S.actionBtn, ...S.resetBtn }}
-            >
+              onClick={() => {
+                auraIntensity.current = 0
+                particlesRef.current.forEach(p => resetParticle(p, canvasWidth, null, true))
+              }}
+              style={{ ...S.actionBtn, ...S.resetBtn }}>
               Reset
             </button>
           </div>
@@ -596,7 +652,7 @@ const S = {
   subtitle: {
     marginTop: 8,
     fontSize: '0.8rem',
-    color: '#666',
+    color: '#555',
     letterSpacing: '0.02em',
     fontWeight: 300,
   },
@@ -606,14 +662,12 @@ const S = {
     borderRadius: 12,
     overflow: 'hidden',
     background: '#000',
-    boxShadow: '0 0 60px rgba(255,255,255,0.03), 0 0 0 1px rgba(255,255,255,0.06)',
+    boxShadow: '0 0 60px rgba(255,255,255,0.02), 0 0 0 1px rgba(255,255,255,0.05)',
   },
   canvas: {
     display: 'block',
     width: '100%',
   },
-
-  // Step info
   stepBox: {
     marginTop: 32,
     textAlign: 'center',
@@ -651,14 +705,12 @@ const S = {
   },
   stepText: {
     fontSize: '0.95rem',
-    color: '#888',
+    color: '#777',
     lineHeight: 1.7,
     margin: 0,
     fontStyle: 'italic',
     fontFamily: "'Playfair Display', serif",
   },
-
-  // Navigation
   nav: {
     marginTop: 28,
     display: 'flex',
@@ -669,8 +721,8 @@ const S = {
   },
   navBtn: {
     background: 'transparent',
-    border: '1px solid #333',
-    color: '#888',
+    border: '1px solid #2a2a2a',
+    color: '#777',
     padding: '8px 18px',
     borderRadius: 6,
     fontSize: '0.8rem',
@@ -679,28 +731,10 @@ const S = {
     transition: 'border-color 0.2s, color 0.2s, opacity 0.2s',
     fontFamily: "'Inter', system-ui, sans-serif",
   },
-  replayBtn: {
-    color: '#555',
-    borderColor: '#222',
-    fontSize: '0.72rem',
-  },
-  skipBtn: {
-    color: '#444',
-    borderColor: '#1e1e1e',
-    fontSize: '0.68rem',
-    letterSpacing: '0.06em',
-  },
-  nextBtn: {
-    fontWeight: 500,
-  },
-  freeModeTag: {
-    fontWeight: 500,
-    fontSize: '0.72rem',
-    letterSpacing: '0.1em',
-    cursor: 'default',
-  },
-
-  // Free-mode controls
+  replayBtn: { color: '#444', borderColor: '#1e1e1e', fontSize: '0.72rem' },
+  skipBtn:   { color: '#383838', borderColor: '#181818', fontSize: '0.68rem', letterSpacing: '0.06em' },
+  nextBtn:   { fontWeight: 500 },
+  freeModeTag: { fontWeight: 500, fontSize: '0.72rem', letterSpacing: '0.1em', cursor: 'default' },
   controls: {
     marginTop: 36,
     display: 'flex',
@@ -711,7 +745,7 @@ const S = {
     width: '100%',
     maxWidth: 860,
     paddingTop: 24,
-    borderTop: '1px solid #151515',
+    borderTop: '1px solid #111',
   },
   controlGroup: {
     display: 'flex',
@@ -723,20 +757,17 @@ const S = {
     fontSize: '0.65rem',
     textTransform: 'uppercase',
     letterSpacing: '0.16em',
-    color: '#444',
+    color: '#3a3a3a',
     fontWeight: 500,
   },
-  gwButtons: {
-    display: 'flex',
-    gap: 8,
-  },
+  gwButtons: { display: 'flex', gap: 10 },
   gwBtn: {
-    width: 26,
-    height: 26,
+    width: 24,
+    height: 24,
     borderRadius: '50%',
     border: 'none',
     cursor: 'pointer',
-    transition: 'outline 0.15s, box-shadow 0.15s',
+    transition: 'outline 0.15s, box-shadow 0.15s, opacity 0.15s',
   },
   gwLabel: {
     fontSize: '0.72rem',
@@ -745,15 +776,11 @@ const S = {
     minHeight: '1em',
     transition: 'color 0.3s',
   },
-  slider: {
-    width: 140,
-    accentColor: '#555',
-    cursor: 'pointer',
-  },
+  slider: { width: 140, accentColor: '#444', cursor: 'pointer' },
   actionBtn: {
     background: 'transparent',
-    border: '1px solid #2a2a2a',
-    color: '#888',
+    border: '1px solid #1e1e1e',
+    color: '#666',
     padding: '7px 18px',
     borderRadius: 6,
     fontSize: '0.78rem',
@@ -761,10 +788,5 @@ const S = {
     letterSpacing: '0.04em',
     fontFamily: "'Inter', system-ui, sans-serif",
   },
-  resetBtn: {
-    marginTop: 4,
-    fontSize: '0.7rem',
-    color: '#444',
-    borderColor: '#1a1a1a',
-  },
+  resetBtn: { marginTop: 4, fontSize: '0.7rem', color: '#333', borderColor: '#181818' },
 }
