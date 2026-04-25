@@ -147,10 +147,15 @@ const LAYERS = [
   },
 ]
 
-const PARTICLE_COUNT = 30   // 10 far + 10 mid + 10 near
-const CANVAS_HEIGHT  = 520
-const FADE_IN_PX     = 90
-const FADE_OUT_PX    = 60
+const PARTICLE_COUNT    = 30   // 10 far + 10 mid + 10 near
+const CANVAS_HEIGHT     = 520
+const FADE_IN_PX        = 90
+const FADE_OUT_PX       = 60
+
+// ─── Aura Growth Constants (Step 5+) ─────────────────────────────────────────
+const BASE_AURA_RADIUS  = 118   // px — matches initial outer ring
+const MAX_AURA_RADIUS   = BASE_AURA_RADIUS * 2
+const GROWTH_PER_ABSORB = 2.2   // px added per absorption
 
 // ─── Particle System ──────────────────────────────────────────────────────────
 
@@ -249,7 +254,7 @@ function drawStreak(ctx, x, topY, bottomY, color, opacity, layer) {
 
 // ─── Renderer ─────────────────────────────────────────────────────────────────
 
-function renderFrame({ ctx, particles, canvasWidth, canvasHeight, gwColor, auraIntensity, stepCfg, fieldStrength }) {
+function renderFrame({ ctx, particles, canvasWidth, canvasHeight, gwColor, auraIntensity, stepCfg, fieldStrength, auraRadius, absorbedCount, currentStep }) {
   // Near-full clear — gradient handles streak appearance, no heavy trails
   ctx.fillStyle = 'rgba(0,0,0,0.93)'
   ctx.fillRect(0, 0, canvasWidth, canvasHeight)
@@ -275,12 +280,13 @@ function renderFrame({ ctx, particles, canvasWidth, canvasHeight, gwColor, auraI
   const baseI    = 0.13 + breathe * 0.055
   const intensity = baseI + Math.min(auraIntensity * 0.15, 0.42)
 
-  // Four aura layers: wide diffuse → tight inner
+  // Four aura layers: wide diffuse → tight inner — scale with auraRadius
+  const rScale = (auraRadius ?? BASE_AURA_RADIUS) / BASE_AURA_RADIUS
   ;[
-    { r: 118, as: 0.28 },
-    { r: 76,  as: 0.50 },
-    { r: 44,  as: 0.68 },
-    { r: 20,  as: 0.38 },
+    { r: 118 * rScale, as: 0.28 },
+    { r: 76  * rScale, as: 0.50 },
+    { r: 44  * rScale, as: 0.68 },
+    { r: 20  * rScale, as: 0.38 },
   ].forEach(({ r, as }) => {
     const g = ctx.createRadialGradient(figureX, figureY - 15, 0, figureX, figureY - 15, r)
     g.addColorStop(0,   hexToRgba(auraCol, intensity * as))
@@ -348,23 +354,44 @@ function renderFrame({ ctx, particles, canvasWidth, canvasHeight, gwColor, auraI
 
     drawStreak(ctx, drawX, p.y - p.length, p.y, p.color, opacity, p.layer)
   })
+
+  // Absorbed counter — visible from Step 5 onward
+  if (currentStep >= 5) {
+    ctx.save()
+    ctx.font = '500 11px Inter, -apple-system, sans-serif'
+    ctx.fillStyle = 'rgba(255,255,255,0.26)'
+    ctx.textAlign = 'right'
+    ctx.textBaseline = 'bottom'
+    ctx.fillText(`Absorbed: ${absorbedCount ?? 0}`, canvasWidth - 16, canvasHeight - 14)
+    ctx.restore()
+  }
 }
 
 // ─── Particle Update ──────────────────────────────────────────────────────────
 
-function updateParticles({ particles, canvasWidth, canvasHeight, gwColor, fieldStrength, stepCfg, auraIntensityRef, pulseRef }) {
+function updateParticles({ particles, canvasWidth, canvasHeight, gwColor, fieldStrength, stepCfg, auraIntensityRef, pulseRef, auraRadiusRef, targetRadiusRef, absorbedCountRef, currentStep }) {
   if (!stepCfg.rain) return
 
-  const figureX   = canvasWidth / 2
-  const figureY   = canvasHeight - 72
-  const curveZone = canvasHeight * 0.52
-  const now       = performance.now()
+  const figureX    = canvasWidth / 2
+  const figureY    = canvasHeight - 72
+  const auraRadius = auraRadiusRef?.current ?? BASE_AURA_RADIUS
+  const now        = performance.now()
+
+  // Curve zone expands with aura at Step 5+: matching rain bends earlier as field grows
+  const baseZone     = canvasHeight * 0.52
+  const expandedZone = Math.max(figureY - auraRadius * 1.45, canvasHeight * 0.14)
+  const curveZone    = currentStep >= 5 ? Math.min(baseZone, expandedZone) : baseZone
+
+  // Capture radius scales gently with aura growth
+  const captureRadius = currentStep >= 5
+    ? 26 + (auraRadius - BASE_AURA_RADIUS) * 0.20
+    : 26
 
   particles.forEach(p => {
     if (p.absorbed) return
 
     if (p.absorbing) {
-      p.absorbProgress += 0.024  // slow, graceful fade
+      p.absorbProgress += 0.024
       if (p.absorbProgress >= 1) {
         p.absorbed = true
         resetParticle(p, canvasWidth, stepCfg.weightedColors)
@@ -386,10 +413,15 @@ function updateParticles({ particles, canvasWidth, canvasHeight, gwColor, fieldS
 
     if (isMatch && stepCfg.allowAbsorption) {
       const dist = Math.hypot(curvedX - figureX, p.y - figureY)
-      if (dist < 26) {
+      if (dist < captureRadius) {
         p.absorbing = true
         auraIntensityRef.current = Math.min(auraIntensityRef.current + 0.75, 5)
         pulseRef.current = 1
+        // Grow the aura toward its target (capped at max)
+        if (currentStep >= 5 && targetRadiusRef && absorbedCountRef) {
+          absorbedCountRef.current += 1
+          targetRadiusRef.current = Math.min(MAX_AURA_RADIUS, targetRadiusRef.current + GROWTH_PER_ABSORB)
+        }
         return
       }
     }
@@ -412,13 +444,17 @@ function hexToRgba(hex, alpha) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function TryTheField() {
-  const canvasRef     = useRef(null)
-  const particlesRef  = useRef([])
-  const rafRef        = useRef(null)
-  const auraIntensity = useRef(0)
-  const pulseRef      = useRef(0)
-  const runningRef    = useRef(true)
-  const stepCfgRef    = useRef(STEPS[0])
+  const canvasRef      = useRef(null)
+  const particlesRef   = useRef([])
+  const rafRef         = useRef(null)
+  const auraIntensity  = useRef(0)
+  const pulseRef       = useRef(0)
+  const runningRef     = useRef(true)
+  const stepCfgRef     = useRef(STEPS[0])
+  const auraRadiusRef  = useRef(BASE_AURA_RADIUS)
+  const targetRadiusRef = useRef(BASE_AURA_RADIUS)
+  const absorbedCountRef = useRef(0)
+  const currentStepRef = useRef(1)
 
   const [currentStep,   setCurrentStep]   = useState(1)
   const [gwColor,       setGwColor]       = useState('darkblue')
@@ -428,9 +464,10 @@ export default function TryTheField() {
 
   useEffect(() => { runningRef.current = running }, [running])
 
-  const stepCfg       = STEPS[currentStep - 1]
-  const activeGwColor = stepCfg.gwColor ?? gwColor
-  stepCfgRef.current  = stepCfg
+  const stepCfg        = STEPS[currentStep - 1]
+  const activeGwColor  = stepCfg.gwColor ?? gwColor
+  stepCfgRef.current   = stepCfg
+  currentStepRef.current = currentStep
 
   // Init particles
   useEffect(() => {
@@ -477,11 +514,17 @@ export default function TryTheField() {
           stepCfg: cfg,
           auraIntensityRef: auraIntensity,
           pulseRef,
+          auraRadiusRef,
+          targetRadiusRef,
+          absorbedCountRef,
+          currentStep: currentStepRef.current,
         })
       }
 
       auraIntensity.current = Math.max(0, auraIntensity.current - 0.022)
       pulseRef.current      = Math.max(0, pulseRef.current      - 0.04)
+      // Smooth lerp toward target aura radius
+      auraRadiusRef.current += (targetRadiusRef.current - auraRadiusRef.current) * 0.08
 
       renderFrame({
         ctx,
@@ -492,6 +535,9 @@ export default function TryTheField() {
         auraIntensity: auraIntensity.current,
         stepCfg: cfg,
         fieldStrength,
+        auraRadius:    auraRadiusRef.current,
+        absorbedCount: absorbedCountRef.current,
+        currentStep:   currentStepRef.current,
       })
     }
 
@@ -503,6 +549,12 @@ export default function TryTheField() {
   const applyStep = useCallback((n, stagger = false) => {
     const cfg = STEPS[n - 1]
     auraIntensity.current = 0
+    // Reset aura growth when going back to steps before the feedback loop
+    if (n < 5) {
+      auraRadiusRef.current   = BASE_AURA_RADIUS
+      targetRadiusRef.current = BASE_AURA_RADIUS
+      absorbedCountRef.current = 0
+    }
     particlesRef.current.forEach(p =>
       resetParticle(p, canvasWidth, cfg.weightedColors, stagger)
     )
