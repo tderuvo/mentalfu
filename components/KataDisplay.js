@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import NavBar from "./NavBar";
 import styles from "./KataDisplay.module.css";
 
 export default function KataDisplay({ katas }) {
@@ -43,35 +44,37 @@ export default function KataDisplay({ katas }) {
   const trainsVisible = bottomVisible && !topVisible;
 
   return (
-    <main className={styles.page}>
-      <img src="/ninefold-logo.png" alt="Ninefold" className={styles.logo} />
-      <div ref={topSentinelRef} className={styles.topSentinel} />
+    <>
+      <NavBar belt={kata?.beltStage} />
+      <main className={styles.page}>
+        <div ref={topSentinelRef} className={styles.topSentinel} />
 
-      {kata && (
-        <>
-          <article className={styles.kata}>
-            <h1 className={styles.title}>{kata.title}</h1>
-            <div
-              className={styles.body}
-              dangerouslySetInnerHTML={{ __html: kata.html }}
-            />
-            <div ref={bottomSentinelRef} className={styles.bottomSentinel} />
-          </article>
+        {kata && (
+          <>
+            <article className={styles.kata}>
+              <h1 className={styles.title}>{kata.title}</h1>
+              <div
+                className={styles.body}
+                dangerouslySetInnerHTML={{ __html: kata.html }}
+              />
+              <div ref={bottomSentinelRef} className={styles.bottomSentinel} />
+            </article>
 
-          {kata.cardText && (
-            <section
-              className={`${styles.trains} ${
-                trainsVisible ? styles.trainsVisible : ""
-              }`}
-            >
-              <p className={styles.trainsKicker}>What This Trains</p>
-              <p className={styles.trainsText}>{kata.cardText}</p>
-            </section>
-          )}
-        </>
-      )}
+            {kata.cardText && (
+              <section
+                className={`${styles.trains} ${
+                  trainsVisible ? styles.trainsVisible : ""
+                }`}
+              >
+                <p className={styles.trainsKicker}>What This Trains</p>
+                <p className={styles.trainsText}>{kata.cardText}</p>
+              </section>
+            )}
+          </>
+        )}
 
-      <footer className={styles.footer}>MentalFu</footer>
-    </main>
+        <footer className={styles.footer}>MentalFu</footer>
+      </main>
+    </>
   );
 }

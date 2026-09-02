@@ -1,0 +1,232 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--white);
+  padding: 0 1.5rem 4rem;
+}
+
+.hero {
+  width: 100%;
+  max-width: 640px;
+  padding-top: 4rem;
+  text-align: center;
+}
+
+.heroLine {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 6vw, 2.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--black);
+  margin-bottom: 1.25rem;
+}
+
+.heroSub {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--mid);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.valley {
+  width: 100%;
+  max-width: 620px;
+  text-align: center;
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.valley p {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--dark);
+  margin-bottom: 1rem;
+}
+
+.valleyPunch {
+  font-weight: 600;
+  color: var(--black);
+}
+
+.block {
+  width: 100%;
+  max-width: 620px;
+  margin-top: 3.25rem;
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.9rem;
+}
+
+.block p {
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--dark);
+  margin-bottom: 1rem;
+}
+
+.block p:last-child {
+  margin-bottom: 0;
+}
+
+.blockPunch {
+  font-weight: 600;
+  color: var(--black);
+}
+
+.proofIntro {
+  font-weight: 500;
+  color: var(--mid);
+}
+
+/* The single spot on this page allowed to borrow the Kata page's own look —
+   a literal preview of what the reading experience actually feels like. */
+.proofCard {
+  background: #FAF6F0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem 1.75rem;
+  margin-top: 0.5rem;
+}
+
+.proofTitle {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #211E1A;
+  margin-bottom: 1.1rem;
+  text-align: center;
+}
+
+.proofBody {
+  font-family: "Lora", Georgia, serif;
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: #3A362F;
+}
+
+.proofBody p {
+  margin-bottom: 1.15rem;
+}
+
+.proofBody p:last-child {
+  margin-bottom: 0;
+}
+
+.proofLink {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.warning {
+  width: 100%;
+  max-width: 620px;
+  margin-top: 3.25rem;
+  background: var(--black);
+  color: var(--white);
+  padding: 2.25rem 1.75rem;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.warningEyebrow {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+  margin-bottom: 1.1rem;
+}
+
+.warning p {
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #E4E1DB;
+  margin-bottom: 0.9rem;
+}
+
+.warning p:last-child {
+  margin-bottom: 0;
+}
+
+.warningPunch {
+  font-weight: 600;
+  color: var(--white);
+}
+
+.cta {
+  width: 100%;
+  max-width: 620px;
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.ctaButton {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--black);
+  padding: 1rem 2.25rem;
+  border-radius: 3px;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.ctaButton:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+
+.ctaSub {
+  margin-top: 1rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.footer {
+  margin-top: 3.5rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (min-width: 640px) {
+  .page {
+    padding: 0 2rem 5rem;
+  }
+  .hero {
+    padding-top: 5rem;
+  }
+  .block, .warning, .cta {
+    margin-top: 4rem;
+  }
+}
