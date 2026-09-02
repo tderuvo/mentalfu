@@ -8,77 +8,108 @@ export default function WhyPage({ katas }) {
       <NavBar />
       <main className={styles.page}>
         <section className={styles.hero}>
+          <p className={styles.eyebrow}>An Announcement</p>
           <h1 className={styles.heroLine}>
-            There&rsquo;s a kind of person nothing seems to rattle.
+            Introducing the First Gymnasium Ever Built for the Mind.
           </h1>
           <p className={styles.heroSub}>
-            Not because less happens to them. Because something underneath
-            got stronger, quietly, before anyone was watching.
+            Not a blog. Not a course. Not another app promising to make you
+            smarter. A place to train the one thing every other kind of
+            success quietly depends on — and it takes less time each morning
+            than brushing your teeth.
           </p>
         </section>
 
         <section className={styles.valley}>
           <p>
-            Everyone can tell when someone has an edge — a calm under
-            pressure most people don&rsquo;t have, a way of moving through a
-            hard day like it&rsquo;s nothing. It isn&rsquo;t luck, and it
-            isn&rsquo;t a personality someone was born with.
+            For as long as gymnasiums have existed, one fact has never needed
+            defending: the body does not improve by reading about exercise.
+            It improves by lifting the weight — today, and tomorrow, and the
+            day after that, whether or not you feel like it.
+          </p>
+          <p>Strangely, we have never built the equivalent for the mind.</p>
+          <p>
+            We own the books on discipline and open them once. We listen to
+            podcasts about resilience while sitting motionless on a couch.
+            Somewhere underneath, most of us already know that understanding
+            an idea and living by it are two entirely different achievements
+            — and that almost nothing has ever been built to close the
+            distance between them.
           </p>
           <p className={styles.valleyPunch}>
-            It&rsquo;s trained, the same way anything worth having gets
-            trained.
+            MentalFu was built to close it.
           </p>
         </section>
 
         <section className={styles.block}>
-          <p className={styles.eyebrow}>The Practice</p>
+          <p className={styles.eyebrow}>Not an Article. A Gym.</p>
           <p>
-            MentalFu is a daily practice. One short passage — a Kata —
-            delivered once a day, read in a few minutes, gone for good after
-            that. No archive. No account to make. No app to manage.
-          </p>
-          <p>Come back tomorrow and there&rsquo;s a new one. That&rsquo;s the whole mechanic.</p>
-        </section>
-
-        <section className={styles.block}>
-          <p className={styles.eyebrow}>How It Works</p>
-          <p>
-            Nobody walks into a dojo and leaves a black belt. Nobody sits
-            down at a piano once and plays. The mind isn&rsquo;t any
-            different — it&rsquo;s trained the same unglamorous way anything
-            else worth having gets trained: one rep, repeated, long before it
-            looks like anything.
-          </p>
-          <p>
-            MentalFu isn&rsquo;t therapy and it isn&rsquo;t a course.
-            It&rsquo;s a dojo — a structured, repeatable practice built for
-            one purpose: training you to see your own blind spots and
-            actually do something about them, the same way physical training
-            builds one specific muscle instead of vaguely hoping the whole
-            body improves.
+            You are not here to read something and move on, the way you
+            would with a blog post. You are here to train, the way you would
+            at a gym — except the equipment is a single short passage, called
+            a Kata, delivered once a day. It takes a few minutes to read.
+            Then it is gone. There is no archive to browse, no backlog to
+            feel guilty about, no account to create first. You do the rep, or
+            you don&rsquo;t, and tomorrow there is a new one waiting either
+            way.
           </p>
           <p className={styles.blockPunch}>
-            Reading about discipline changes nothing. Doing the rep does.
+            That is the entire apparatus. It is deliberately this small, for
+            the same reason a barbell is deliberately just a bar and some
+            plates: the mechanism doesn&rsquo;t need to be complicated to
+            work. It needs to be repeated.
+          </p>
+        </section>
+
+        <section className={styles.block}>
+          <p className={styles.eyebrow}>Problems as Old as Civilization</p>
+          <p>
+            Fatigue. Comparison. Self-doubt. The particular exhaustion of
+            caring what other people think. None of these are new.
+            Philosophers were writing about them in Athens. Monks were
+            training against them in silence centuries before that. Every
+            generation since has produced someone who worked out, in their
+            own words, how to stand steady against one of these forces — and
+            then died, and left the answer scattered across a book most
+            people will never open, in a language most people will never
+            read.
+          </p>
+          <p>
+            MentalFu is not a new idea. It is the oldest ideas that actually
+            held up, tested against three thousand years of human beings
+            failing and occasionally succeeding at the same handful of
+            problems — put in front of you, one at a time, in the time it
+            takes to drink your coffee.
+          </p>
+          <p className={styles.blockPunch}>
+            This is not a gym to make you smarter. Intelligence was never the
+            problem. This is a gym to make you steadier — which, it turns
+            out, was the problem the whole time.
           </p>
         </section>
 
         <section className={styles.block}>
           <p className={styles.eyebrow}>See For Yourself</p>
-          <p className={styles.proofIntro}>Don&rsquo;t take our word for it.</p>
+          <p className={styles.proofIntro}>
+            We could fill the rest of this page with claims about what
+            training here will do for you. We would rather you found out
+            directly. Below is today&rsquo;s Kata — the exact one a member
+            would receive this morning. Read it. That is the entire pitch.
+          </p>
           <ProofSnippet katas={katas} />
         </section>
 
         <section className={styles.block}>
-          <p className={styles.eyebrow}>No Catch</p>
+          <p className={styles.eyebrow}>What This Costs You</p>
           <p>
-            No ads. No email required. No account, no upsell, nothing
-            waiting to be sold to you later.
+            Nothing. No membership fee, no email address, no account, no free
+            trial that quietly becomes a paid one next month.
           </p>
-          <p>
-            This page and the daily Kata are free — not a trial, not a
-            funnel, not a free sample of something paid. If that feels like
-            it must have a catch, it doesn&rsquo;t. That&rsquo;s the whole
-            point.
+          <p className={styles.blockPunch}>
+            We built it this way for a specific reason: anything that has to
+            hook you first, to sell you later, has already told you it
+            doesn&rsquo;t fully believe in itself. We do. So there is no
+            catch to disclose, because there isn&rsquo;t one.
           </p>
         </section>
 
