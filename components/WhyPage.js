@@ -133,11 +133,18 @@ export default function WhyPage({ katas }) {
           <p className={styles.blockPunch}>Just what actually did.</p>
         </section>
 
-        <section className={styles.cta}>
-          <a href="/" className={styles.ctaButton}>
-            Start Today&rsquo;s Kata
-          </a>
-          <p className={styles.ctaSub}>No signup. No cost. Just today&rsquo;s Kata.</p>
+        <section className={styles.imageHero}>
+          <img
+            src="/why-hero.png"
+            alt="A lone figure standing firm, arms raised in triumph against a breaking storm"
+            className={styles.heroImage}
+          />
+          <div className={styles.heroImageOverlay}>
+            <p className={styles.heroCaption}>Start Your Warrior Journey Today</p>
+            <a href="/" className={styles.beginButton}>
+              Begin
+            </a>
+          </div>
         </section>
 
         <footer className={styles.footer}>MentalFu</footer>
