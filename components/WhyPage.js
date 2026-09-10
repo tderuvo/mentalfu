@@ -172,7 +172,7 @@ export default function WhyPage({ katas }) {
           />
           <div className={styles.heroImageOverlay}>
             <p className={styles.heroCaption}>Start Your Warrior Journey Today</p>
-            <a href="/" className={styles.beginButton}>
+            <a href="/workout" className={styles.beginButton}>
               Begin
             </a>
           </div>

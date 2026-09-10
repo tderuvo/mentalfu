@@ -21,7 +21,7 @@ export default function ProofSnippet({ katas }) {
         className={styles.proofBody}
         dangerouslySetInnerHTML={{ __html: kata.html }}
       />
-      <a href="/" className={styles.proofLink}>
+      <a href="/workout" className={styles.proofLink}>
         Read today&rsquo;s Kata &rarr;
       </a>
     </div>

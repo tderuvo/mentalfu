@@ -1,7 +1,5 @@
-import { getAllKatas } from "@/lib/katas";
-import KataDisplay from "@/components/KataDisplay";
+import HomePage from "@/components/HomePage";
 
 export default function Home() {
-  const katas = getAllKatas();
-  return <KataDisplay katas={katas} />;
+  return <HomePage />;
 }
