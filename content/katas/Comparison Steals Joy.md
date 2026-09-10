@@ -1,30 +1,33 @@
 ---
+schema_version: 1
+
+id: "kata-0003"
 title: "Comparison Steals Joy"
-domain: "Universal proverb (Roosevelt's 'comparison is the thief of joy'; convergent across cultures as a warning against envy)"
-belt_stage: "White (Begin)"
-human_pattern: "Comparison; measuring your life against someone else's edited highlights"
-card_text: "seeing what you have clearly, without sizing it against someone else's highlight reel"
-source_type: "Time-honored tradition"
+sequence: 3
 status: "draft"
-sequence: "3"
 publish_date: ""
+
+classification:
+  belt_stage: "White (Begin)"
+  domain: "Universal proverb (Roosevelt's 'comparison is the thief of joy'; convergent across cultures as a warning against envy)"
+  human_pattern: "Comparison; measuring your life against someone else's edited highlights"
+  source_type: "Time-honored tradition"
+
+presentation:
+  card_text: "seeing what you have clearly, without sizing it against someone else's highlight reel"
+  estimated_minutes: null
+
+training:
+  modalities:
+    - reading
+  exercise_types: []
+
+modules: []
+
+completion:
+  mode: "manual"
+  required_modules: []
 ---
-
-<!--
-ANATOMY GUIDE (see MentalFu-Kata-Anatomy.md) — reference while drafting.
-This guide and everything above the title is metadata for internal use only —
-none of it is meant to appear in the published piece.
-
-1. Introduction — is this a time-honored tradition, a new lens on something old,
-   something original, or a hidden principle?
-2. What this helps with — growth, peace, clarity, etc. (author's own clarity
-   while writing, not necessarily stated outright to the reader)
-3. The meat — the knowledge itself, delivered directly, not as a definition
-4. Illustration (a story) or implications (what practicing this actually asks of someone)
-5. Closing — either an open invitation to contemplate from multiple angles,
-   or one or two light exercises (journaling, a simple prompt)
--->
-
 # Comparison Steals Joy
 
 You open your phone for ten seconds and somehow leave it feeling like your life needs work. Nobody said anything to you. Nothing about your actual circumstances changed between picking the phone up and putting it down. What changed was the picture in your head of what you're supposed to have by now.

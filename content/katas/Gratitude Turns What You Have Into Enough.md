@@ -1,30 +1,33 @@
 ---
+schema_version: 1
+
+id: "kata-0010"
 title: "Gratitude Turns What You Have Into Enough"
-domain: "Universal proverb (a version of this appears in nearly every religious and philosophical tradition, independently arrived at)"
-belt_stage: "White (Begin)"
-human_pattern: "Treating 'enough' as a future quantity to reach rather than a lens available right now"
-card_text: "seeing what's already here as enough, right now"
-source_type: "Time-honored tradition"
+sequence: 10
 status: "draft"
-sequence: "10"
 publish_date: ""
+
+classification:
+  belt_stage: "White (Begin)"
+  domain: "Universal proverb (a version of this appears in nearly every religious and philosophical tradition, independently arrived at)"
+  human_pattern: "Treating 'enough' as a future quantity to reach rather than a lens available right now"
+  source_type: "Time-honored tradition"
+
+presentation:
+  card_text: "seeing what's already here as enough, right now"
+  estimated_minutes: null
+
+training:
+  modalities:
+    - reading
+  exercise_types: []
+
+modules: []
+
+completion:
+  mode: "manual"
+  required_modules: []
 ---
-
-<!--
-ANATOMY GUIDE (see MentalFu-Kata-Anatomy.md) — reference while drafting.
-This guide and everything above the title is metadata for internal use only —
-none of it is meant to appear in the published piece.
-
-1. Introduction — is this a time-honored tradition, a new lens on something old,
-   something original, or a hidden principle?
-2. What this helps with — growth, peace, clarity, etc. (author's own clarity
-   while writing, not necessarily stated outright to the reader)
-3. The meat — the knowledge itself, delivered directly, not as a definition
-4. Illustration (a story) or implications (what practicing this actually asks of someone)
-5. Closing — either an open invitation to contemplate from multiple angles,
-   or one or two light exercises (journaling, a simple prompt)
--->
-
 # Gratitude Turns What You Have Into Enough
 
 There's a quiet assumption running underneath a lot of striving: that "enough" is a destination sitting somewhere further up the road, past the next raise, the next relationship, the next version of the body or the bank account or the résumé. Once that's reached, the feeling of enough will finally arrive on its own, as a kind of reward for having gotten there. Almost nobody who reaches the marker they set finds the feeling waiting for them. There's just a new marker, a little further up the same road.

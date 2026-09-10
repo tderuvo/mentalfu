@@ -1,30 +1,33 @@
 ---
+schema_version: 1
+
+id: "kata-0001"
 title: "This Too Shall Pass"
-domain: "Universal proverb (Persian poetry, Jewish folklore, oral tradition)"
-belt_stage: "White (Begin)"
-human_pattern: "Impermanence; mistaking a current feeling for a permanent state"
-card_text: "trusting that a hard feeling will pass, even when it doesn't feel like it will"
-source_type: "Time-honored tradition"
+sequence: 1
 status: "draft"
-sequence: "1"
 publish_date: ""
+
+classification:
+  belt_stage: "White (Begin)"
+  domain: "Universal proverb (Persian poetry, Jewish folklore, oral tradition)"
+  human_pattern: "Impermanence; mistaking a current feeling for a permanent state"
+  source_type: "Time-honored tradition"
+
+presentation:
+  card_text: "trusting that a hard feeling will pass, even when it doesn't feel like it will"
+  estimated_minutes: null
+
+training:
+  modalities:
+    - reading
+  exercise_types: []
+
+modules: []
+
+completion:
+  mode: "manual"
+  required_modules: []
 ---
-
-<!--
-ANATOMY GUIDE (see MentalFu-Kata-Anatomy.md) — reference while drafting.
-This guide and everything above the title is metadata for internal use only —
-none of it is meant to appear in the published piece.
-
-1. Introduction — is this a time-honored tradition, a new lens on something old,
-   something original, or a hidden principle?
-2. What this helps with — growth, peace, clarity, etc. (author's own clarity
-   while writing, not necessarily stated outright to the reader)
-3. The meat — the knowledge itself, delivered directly, not as a definition
-4. Illustration (a story) or implications (what practicing this actually asks of someone)
-5. Closing — either an open invitation to contemplate from multiple angles,
-   or one or two light exercises (journaling, a simple prompt)
--->
-
 # This Too Shall Pass
 
 There's an old story, told in enough different places that nobody really owns it anymore, about a king who summoned his wisest advisor and asked for something strange: a ring, engraved with words that would be true no matter what happened to him. Words that would humble him in his greatest triumph, and comfort him in his darkest hour — the same words, doing both jobs.

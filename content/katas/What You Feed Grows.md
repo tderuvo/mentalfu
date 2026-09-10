@@ -1,30 +1,33 @@
 ---
+schema_version: 1
+
+id: "kata-0004"
 title: "What You Feed, Grows"
-domain: "Convergent tradition (Cherokee parable, Stoic and Buddhist writing on attention)"
-belt_stage: "White (Begin)"
-human_pattern: "Attention as the root allocation of energy; unconsciously strengthening what you'd rather weaken"
-card_text: "noticing what you're feeding with your attention, on purpose"
-source_type: "Time-honored tradition"
+sequence: 4
 status: "draft"
-sequence: "4"
 publish_date: ""
+
+classification:
+  belt_stage: "White (Begin)"
+  domain: "Convergent tradition (Cherokee parable, Stoic and Buddhist writing on attention)"
+  human_pattern: "Attention as the root allocation of energy; unconsciously strengthening what you'd rather weaken"
+  source_type: "Time-honored tradition"
+
+presentation:
+  card_text: "noticing what you're feeding with your attention, on purpose"
+  estimated_minutes: null
+
+training:
+  modalities:
+    - reading
+  exercise_types: []
+
+modules: []
+
+completion:
+  mode: "manual"
+  required_modules: []
 ---
-
-<!--
-ANATOMY GUIDE (see MentalFu-Kata-Anatomy.md) — reference while drafting.
-This guide and everything above the title is metadata for internal use only —
-none of it is meant to appear in the published piece.
-
-1. Introduction — is this a time-honored tradition, a new lens on something old,
-   something original, or a hidden principle?
-2. What this helps with — growth, peace, clarity, etc. (author's own clarity
-   while writing, not necessarily stated outright to the reader)
-3. The meat — the knowledge itself, delivered directly, not as a definition
-4. Illustration (a story) or implications (what practicing this actually asks of someone)
-5. Closing — either an open invitation to contemplate from multiple angles,
-   or one or two light exercises (journaling, a simple prompt)
--->
-
 # What You Feed, Grows
 
 An old Cherokee grandfather tells his grandson that inside every person, two wolves are fighting. One is anger, envy, resentment, self-pity, grudges held long past their use. The other is joy, patience, humility, kindness, love. The boy thinks about it and asks which wolf wins. The grandfather answers: the one you feed.

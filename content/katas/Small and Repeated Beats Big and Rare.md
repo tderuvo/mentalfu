@@ -1,30 +1,33 @@
 ---
+schema_version: 1
+
+id: "kata-0009"
 title: "Small and Repeated Beats Big and Rare"
-domain: "Time-honored tradition (Taoism's founding metaphor) and the observable mechanics of skill-building"
-belt_stage: "White (Begin)"
-human_pattern: "Waiting for a heroic leap instead of trusting the unglamorous accumulation of small, repeated steps"
-card_text: "trusting small repeated effort over waiting for a big moment"
-source_type: "Time-honored tradition"
+sequence: 9
 status: "draft"
-sequence: "9"
 publish_date: ""
+
+classification:
+  belt_stage: "White (Begin)"
+  domain: "Time-honored tradition (Taoism's founding metaphor) and the observable mechanics of skill-building"
+  human_pattern: "Waiting for a heroic leap instead of trusting the unglamorous accumulation of small, repeated steps"
+  source_type: "Time-honored tradition"
+
+presentation:
+  card_text: "trusting small repeated effort over waiting for a big moment"
+  estimated_minutes: null
+
+training:
+  modalities:
+    - reading
+  exercise_types: []
+
+modules: []
+
+completion:
+  mode: "manual"
+  required_modules: []
 ---
-
-<!--
-ANATOMY GUIDE (see MentalFu-Kata-Anatomy.md) — reference while drafting.
-This guide and everything above the title is metadata for internal use only —
-none of it is meant to appear in the published piece.
-
-1. Introduction — is this a time-honored tradition, a new lens on something old,
-   something original, or a hidden principle?
-2. What this helps with — growth, peace, clarity, etc. (author's own clarity
-   while writing, not necessarily stated outright to the reader)
-3. The meat — the knowledge itself, delivered directly, not as a definition
-4. Illustration (a story) or implications (what practicing this actually asks of someone)
-5. Closing — either an open invitation to contemplate from multiple angles,
-   or one or two light exercises (journaling, a simple prompt)
--->
-
 # Small and Repeated Beats Big and Rare
 
 Everyone knows the line — a journey of a thousand miles starts with a single step. It gets quoted so often it's stopped meaning much, usually trotted out to encourage someone standing at the very beginning of something. But the line is doing more work than that, and the part that gets skipped is the part that actually matters: the journey isn't made of one meaningful step followed by a thousand miles taking care of themselves. It's made of roughly two thousand more steps, all of them looking almost exactly like the first, none of them feeling like progress on their own.

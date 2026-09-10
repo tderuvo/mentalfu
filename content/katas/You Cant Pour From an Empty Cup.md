@@ -1,30 +1,33 @@
 ---
+schema_version: 1
+
+id: "kata-0007"
 title: "You Can't Pour From an Empty Cup"
-domain: "Convergent tradition (nursing, parenting, and eldercare wisdom converging independently)"
-belt_stage: "White (Begin)"
-human_pattern: "Framing self-care as selfishness instead of as the precondition for caring for others at all"
-card_text: "giving yourself permission to refill, without the guilt"
-source_type: "Time-honored tradition"
+sequence: 7
 status: "draft"
-sequence: "7"
 publish_date: ""
+
+classification:
+  belt_stage: "White (Begin)"
+  domain: "Convergent tradition (nursing, parenting, and eldercare wisdom converging independently)"
+  human_pattern: "Framing self-care as selfishness instead of as the precondition for caring for others at all"
+  source_type: "Time-honored tradition"
+
+presentation:
+  card_text: "giving yourself permission to refill, without the guilt"
+  estimated_minutes: null
+
+training:
+  modalities:
+    - reading
+  exercise_types: []
+
+modules: []
+
+completion:
+  mode: "manual"
+  required_modules: []
 ---
-
-<!--
-ANATOMY GUIDE (see MentalFu-Kata-Anatomy.md) — reference while drafting.
-This guide and everything above the title is metadata for internal use only —
-none of it is meant to appear in the published piece.
-
-1. Introduction — is this a time-honored tradition, a new lens on something old,
-   something original, or a hidden principle?
-2. What this helps with — growth, peace, clarity, etc. (author's own clarity
-   while writing, not necessarily stated outright to the reader)
-3. The meat — the knowledge itself, delivered directly, not as a definition
-4. Illustration (a story) or implications (what practicing this actually asks of someone)
-5. Closing — either an open invitation to contemplate from multiple angles,
-   or one or two light exercises (journaling, a simple prompt)
--->
-
 # You Can't Pour From an Empty Cup
 
 There's a particular kind of person who has trouble with this one, and it's usually the person who takes caring for others seriously. Somewhere along the way, taking care of yourself got filed under the same category as letting people down — a small betrayal, a thing you sneak in when nobody needs you, never a thing you'd claim outright. Ask that person what they need and they'll answer with what everyone else needs first, and mean it, and consider it a virtue that they did.
