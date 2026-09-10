@@ -48,6 +48,10 @@ export default function HomePage() {
             think, notice, question, choose, write, challenge, imagine and
             act.
           </p>
+          <p className={styles.punch}>
+            Show up. Do the work in front of you. No spotting, no skipped
+            sets.
+          </p>
           <div className={styles.repsGrid}>
             {REPS.map((rep) => (
               <div key={rep.label} className={styles.repCard}>
@@ -59,8 +63,7 @@ export default function HomePage() {
         </section>
 
         <section className={`${styles.section} ${styles.dark}`}>
-          <p className={styles.eyebrow}>You Don&rsquo;t Pick the Workout.</p>
-          <p className={styles.lead}>You get today&rsquo;s Kata.</p>
+          <p className={styles.eyebrow}>Today&rsquo;s Kata Shows Up. You Do It.</p>
           <ul className={styles.maybeList}>
             <li>Maybe it&rsquo;s a question.</li>
             <li>Maybe it&rsquo;s a challenge.</li>
@@ -100,21 +103,20 @@ export default function HomePage() {
         </section>
 
         <section className={`${styles.section} ${styles.dark}`}>
-          <p className={styles.eyebrow}>This Isn&rsquo;t Another Self-Help Library.</p>
+          <p className={styles.eyebrow}>One Kata. Today. That&rsquo;s the Whole Program.</p>
           <p className={styles.lead}>
-            You don&rsquo;t need another 300 videos saved for later.
+            No backlog. No losing your place. No falling behind.
           </p>
-          <p className={styles.lead}>
-            You don&rsquo;t need another book sitting half-read beside your
-            bed.
+          <p className={styles.punch}>
+            Show up. Do the work in front of you. Come back tomorrow for the
+            next one.
           </p>
-          <p className={styles.lead}>
-            And you don&rsquo;t need 47 exercises to choose from.
-          </p>
-          <p className={styles.punch}>You get one.</p>
-          <p className={styles.punch}>Today&rsquo;s Kata.</p>
-          <p className={styles.punch}>Do it.</p>
-          <p className={styles.lead}>Tomorrow we&rsquo;ll give you another one.</p>
+        </section>
+
+        <section className={`${styles.section} ${styles.mantra}`}>
+          <p className={styles.mantraLine}>Show up.</p>
+          <p className={styles.mantraLine}>Do the work.</p>
+          <p className={styles.mantraLine}>Come back tomorrow.</p>
         </section>
 
         <section className={`${styles.section} ${styles.light}`}>
@@ -122,16 +124,10 @@ export default function HomePage() {
             You Don&rsquo;t Get Strong by Understanding Push-Ups.
           </p>
           <p className={styles.punch}>You get strong by doing them.</p>
-          <p className={styles.lead}>MentalFu works the same way.</p>
-          <ul className={styles.someoneList}>
-            <li>Reading about gratitude isn&rsquo;t gratitude.</li>
-            <li>Understanding self-control isn&rsquo;t self-control.</li>
-            <li>
-              Knowing you compare yourself to others doesn&rsquo;t mean
-              you&rsquo;ll stop.
-            </li>
-            <li>Knowing you should let go doesn&rsquo;t mean you can.</li>
-          </ul>
+          <p className={styles.lead}>
+            MentalFu works the same way. Understanding a habit doesn&rsquo;t
+            break it. Doing the work does.
+          </p>
           <p className={styles.punch}>The mind changes through practice.</p>
         </section>
 
