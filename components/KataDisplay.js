@@ -8,12 +8,20 @@ export default function KataDisplay({ katas }) {
   const [kata, setKata] = useState(null);
   const [topVisible, setTopVisible] = useState(true);
   const [bottomVisible, setBottomVisible] = useState(false);
+  const [printDate, setPrintDate] = useState("");
 
   const topSentinelRef = useRef(null);
   const bottomSentinelRef = useRef(null);
 
   useEffect(() => {
     setKata(katas[Math.floor(Math.random() * katas.length)]);
+    setPrintDate(
+      new Date().toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    );
   }, [katas]);
 
   useEffect(() => {
@@ -70,11 +78,46 @@ export default function KataDisplay({ katas }) {
                 <p className={styles.trainsText}>{kata.cardText}</p>
               </section>
             )}
+
+            <button
+              type="button"
+              onClick={() => window.print()}
+              className={styles.printButton}
+            >
+              Print This Kata
+            </button>
           </>
         )}
 
         <footer className={styles.footer}>MentalFu</footer>
       </main>
+
+      {kata && (
+        <section className={styles.printSheet} aria-hidden="true">
+          <div className={styles.printHead}>
+            <span className={styles.printWordmark}>MentalFu</span>
+            <span className={styles.printDate}>{printDate}</span>
+          </div>
+
+          <h1 className={styles.printTitle}>{kata.title}</h1>
+
+          {kata.cardText && (
+            <p className={styles.printTrains}>{kata.cardText}</p>
+          )}
+
+          <div
+            className={styles.printBody}
+            dangerouslySetInnerHTML={{ __html: kata.html }}
+          />
+
+          <div className={styles.printNotes}>
+            <p className={styles.printNotesLabel}>Notes</p>
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className={styles.printLine} />
+            ))}
+          </div>
+        </section>
+      )}
     </>
   );
 }

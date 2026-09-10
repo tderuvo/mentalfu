@@ -60,3 +60,9 @@ img { max-width: 100%; display: block; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--off); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+@media print {
+  nav {
+    display: none !important;
+  }
+}
