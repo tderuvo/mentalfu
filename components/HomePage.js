@@ -10,6 +10,24 @@ const REPS = [
   { label: "RESET", line: "Stop. Reorient. Start again." },
 ];
 
+const CATEGORIES = [
+  {
+    label: "Train The Mind",
+    line: "Short daily exercises that shape how you think, feel, and respond.",
+    image: "/category-train-the-mind.png",
+  },
+  {
+    label: "Exercise The Brain",
+    line: "Quick challenges — memory, logic, pattern, focus — that give your brain something to actually do.",
+    image: "/category-exercise-the-brain.png",
+  },
+  {
+    label: "Support A Healthy Brain",
+    line: "Small daily check-ins — hydration, movement, sleep — that take care of the machinery underneath it all.",
+    image: "/category-support-a-healthy-brain.png",
+  },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -34,6 +52,30 @@ export default function HomePage() {
               Free Workout
             </a>
             <p className={styles.heroNote}>No account. No signup. Just train.</p>
+          </div>
+        </section>
+
+        <section className={`${styles.section} ${styles.light}`}>
+          <p className={styles.eyebrow}>A Gym Isn&rsquo;t One Machine.</p>
+          <p className={styles.lead}>
+            MentalFu trains three things at once, every day.
+          </p>
+          <div className={styles.categoryGrid}>
+            {CATEGORIES.map((cat) => (
+              <div key={cat.label} className={styles.categoryCard}>
+                {cat.image ? (
+                  <img
+                    src={cat.image}
+                    alt=""
+                    className={styles.categoryImage}
+                  />
+                ) : (
+                  <div className={styles.categoryImage} aria-hidden="true" />
+                )}
+                <p className={styles.categoryLabel}>{cat.label}</p>
+                <p className={styles.categoryLine}>{cat.line}</p>
+              </div>
+            ))}
           </div>
         </section>
 

@@ -319,3 +319,58 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Categories grid */
+
+.categoryGrid {
+  width: 100%;
+  max-width: 960px;
+  margin: 2.5rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.categoryCard {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.categoryImage {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--gold-lt) 0%, var(--gold) 100%);
+  /* PLACEHOLDER — step two swaps this div for:
+     <img src="/category-train-the-mind.png" alt="" className={styles.categoryImage} />
+     (one filename per category). Keep the same aspect-ratio and margin-bottom
+     so the swap is drop-in with no layout changes. */
+}
+
+.categoryLabel {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+}
+
+.categoryLine {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--mid);
+}
+
+@media (max-width: 700px) {
+  .categoryGrid {
+    grid-template-columns: 1fr;
+  }
+}
