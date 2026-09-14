@@ -51,6 +51,8 @@ export default function KataDisplay({ katas }) {
 
   const trainsVisible = bottomVisible && !topVisible;
 
+  const handlePrint = () => window.print();
+
   return (
     <>
       <NavBar belt={kata?.beltStage} />
@@ -62,7 +64,53 @@ export default function KataDisplay({ katas }) {
             <article className={styles.kata}>
               <header className={styles.header}>
                 <h1 className={styles.title}>{kata.title}</h1>
-                <div className={styles.headerActions} aria-hidden="true" />
+                <div className={styles.headerActions}>
+                  {kata.cardText && (
+                    <a
+                      href="#what-this-trains"
+                      className={styles.iconButton}
+                      aria-label="What This Trains"
+                      title="What This Trains"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                      </svg>
+                    </a>
+                  )}
+                  <button
+                    type="button"
+                    onClick={handlePrint}
+                    className={styles.iconButton}
+                    aria-label="Print this Kata"
+                    title="Print this Kata"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <polyline points="6 9 6 2 18 2 18 9" />
+                      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                      <rect x="6" y="14" width="12" height="8" />
+                    </svg>
+                  </button>
+                </div>
               </header>
               <div className={styles.content}>
                 <div
@@ -75,22 +123,19 @@ export default function KataDisplay({ katas }) {
 
             {kata.cardText && (
               <section
-                className={`${styles.trains} ${
+                id="what-this-trains"
+                className={`${styles.kata} ${styles.trainsCard} ${
                   trainsVisible ? styles.trainsVisible : ""
                 }`}
               >
-                <p className={styles.trainsKicker}>What This Trains</p>
-                <p className={styles.trainsText}>{kata.cardText}</p>
+                <header className={styles.header}>
+                  <h2 className={styles.title}>What This Trains</h2>
+                </header>
+                <div className={styles.content}>
+                  <p className={styles.trainsText}>{kata.cardText}</p>
+                </div>
               </section>
             )}
-
-            <button
-              type="button"
-              onClick={() => window.print()}
-              className={styles.printButton}
-            >
-              Print This Kata
-            </button>
           </>
         )}
 

@@ -35,6 +35,36 @@
   gap: 0.5rem;
 }
 
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--white);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.iconButton svg {
+  width: 19px;
+  height: 19px;
+}
+
+.iconButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.iconButton:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
 .title {
   flex: 1;
   min-width: 0;
@@ -80,11 +110,10 @@
   height: 1px;
 }
 
-.trains {
-  width: 100%;
-  max-width: 620px;
+.trainsCard {
   margin-top: 2rem;
-  text-align: center;
+  flex: none;
+  animation: none;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -97,21 +126,6 @@
   pointer-events: auto;
 }
 
-.trainsKicker {
-  display: inline-block;
-  font-family: var(--sans);
-  font-weight: 800;
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--dark);
-  background: rgba(201, 168, 76, 0.14);
-  border: 1px solid var(--gold);
-  border-radius: 3px;
-  padding: 0.3rem 0.7rem;
-  margin-bottom: 0.75rem;
-}
-
 .trainsText {
   font-family: var(--sans);
   font-weight: 400;
@@ -121,7 +135,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .trains {
+  .trainsCard {
     transition: none;
   }
 }
@@ -158,26 +172,6 @@
   .body {
     font-size: 1.125rem;
   }
-}
-
-.printButton {
-  display: block;
-  margin: 2rem auto 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: var(--sans);
-  font-weight: 700;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding: 0.4rem 0.2rem;
-  transition: color 0.2s ease;
-}
-
-.printButton:hover {
-  color: var(--dark);
 }
 
 .printSheet {
