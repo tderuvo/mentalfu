@@ -60,12 +60,17 @@ export default function KataDisplay({ katas }) {
         {kata && (
           <>
             <article className={styles.kata}>
-              <h1 className={styles.title}>{kata.title}</h1>
-              <div
-                className={styles.body}
-                dangerouslySetInnerHTML={{ __html: kata.html }}
-              />
-              <div ref={bottomSentinelRef} className={styles.bottomSentinel} />
+              <header className={styles.header}>
+                <h1 className={styles.title}>{kata.title}</h1>
+                <div className={styles.headerActions} aria-hidden="true" />
+              </header>
+              <div className={styles.content}>
+                <div
+                  className={styles.body}
+                  dangerouslySetInnerHTML={{ __html: kata.html }}
+                />
+                <div ref={bottomSentinelRef} className={styles.bottomSentinel} />
+              </div>
             </article>
 
             {kata.cardText && (
