@@ -1,5 +1,5 @@
 import { getAllKatas } from "@/lib/katas";
-import KataDisplay from "@/components/KataDisplay";
+import WorkoutRedirect from "@/components/WorkoutRedirect";
 
 export const metadata = {
   title: "Today's Workout — MentalFu",
@@ -7,6 +7,6 @@ export const metadata = {
 };
 
 export default function Workout() {
-  const katas = getAllKatas();
-  return <KataDisplay katas={katas} />;
+  const slugs = getAllKatas().map((kata) => kata.slug);
+  return <WorkoutRedirect slugs={slugs} />;
 }
