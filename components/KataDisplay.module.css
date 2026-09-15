@@ -128,6 +128,24 @@
   color: var(--black);
 }
 
+.body h2 {
+  margin: 2.25rem 0 0.9rem;
+  padding: 0.6rem 1rem;
+  background: var(--olive-lt);
+  color: var(--white);
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 6px;
+}
+
+.body h2:first-child {
+  margin-top: 0;
+}
+
 .topSentinel,
 .bottomSentinel {
   width: 100%;
@@ -274,6 +292,22 @@
     font-size: 0.95rem;
     line-height: 1.7;
     color: #111;
+  }
+
+  .printBody h2 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #000;
+    border-bottom: 1.5px solid #4E5B3A;
+    padding-bottom: 0.3rem;
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .printBody h2:first-child {
+    margin-top: 0;
   }
 
   .printBody p {
