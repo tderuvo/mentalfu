@@ -1,0 +1,565 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--white);
+  padding: 0 1.5rem 4rem;
+}
+
+.hero {
+  width: 100%;
+  max-width: 780px;
+  padding-top: 3.5rem;
+  text-align: center;
+}
+
+.title {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: clamp(1.9rem, 7.5vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 1.1rem;
+}
+
+.subtitle {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(1.02rem, 2.4vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--mid);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.brainStage {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.brainWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2.25rem;
+}
+
+.brainImage {
+  width: clamp(220px, 46vw, 460px);
+  height: auto;
+  aspect-ratio: 1278 / 1230;
+}
+
+/* ─── Lantern callout ─────────────────────────────────────────────── */
+
+.lantern {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 400px;
+  margin: 2.25rem auto 0;
+  padding: 1.5rem 1.5rem 1.35rem;
+  border-radius: 10px;
+  background: rgba(201, 168, 76, 0.07);
+  text-align: left;
+}
+
+.lanternIcon {
+  display: flex;
+  color: var(--gold);
+  margin-bottom: 0.85rem;
+}
+
+.lanternIcon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.lanternLabel {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.lanternPrimary {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  margin-bottom: 0.6rem;
+}
+
+.lanternCopy {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--mid);
+  margin-bottom: 1.1rem;
+}
+
+.lanternCta {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.lanternCta:hover {
+  color: var(--dark);
+  border-bottom-color: currentColor;
+}
+
+.lanternCta:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Compass callout ─────────────────────────────────────────────── */
+
+.compass {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 400px;
+  margin: 1.5rem auto 0;
+  padding: 1.5rem 1.5rem 1.35rem;
+  border-radius: 10px;
+  background: rgba(28, 126, 214, 0.07);
+  text-align: left;
+}
+
+.compassIcon {
+  display: flex;
+  color: #1c7ed6;
+  margin-bottom: 0.85rem;
+}
+
+.compassIcon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.compassLabel {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1c7ed6;
+  margin-bottom: 0.5rem;
+}
+
+.compassPrimary {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  margin-bottom: 0.6rem;
+}
+
+.compassCopy {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--mid);
+  margin-bottom: 1.1rem;
+}
+
+.compassCta {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1c7ed6;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.compassCta:hover {
+  color: var(--dark);
+  border-bottom-color: currentColor;
+}
+
+.compassCta:focus-visible {
+  outline: 2px solid #1c7ed6;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Sword callout ───────────────────────────────────────────────── */
+
+.sword {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 400px;
+  margin: 1.5rem auto 0;
+  padding: 1.5rem 1.5rem 1.35rem;
+  border-radius: 10px;
+  background: rgba(214, 66, 62, 0.07);
+  text-align: left;
+}
+
+.swordIcon {
+  display: flex;
+  color: #d6423e;
+  margin-bottom: 0.85rem;
+}
+
+.swordIcon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.swordLabel {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d6423e;
+  margin-bottom: 0.5rem;
+}
+
+.swordPrimary {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  margin-bottom: 0.6rem;
+}
+
+.swordCopy {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--mid);
+  margin-bottom: 1.1rem;
+}
+
+.swordCta {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #d6423e;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.swordCta:hover {
+  color: var(--dark);
+  border-bottom-color: currentColor;
+}
+
+.swordCta:focus-visible {
+  outline: 2px solid #d6423e;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Armor callout ───────────────────────────────────────────────── */
+
+.armor {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 400px;
+  margin: 1.5rem auto 0;
+  padding: 1.5rem 1.5rem 1.35rem;
+  border-radius: 10px;
+  background: rgba(63, 163, 77, 0.07);
+  text-align: left;
+}
+
+.armorIcon {
+  display: flex;
+  color: #3fa34d;
+  margin-bottom: 0.85rem;
+}
+
+.armorIcon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.armorLabel {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #3fa34d;
+  margin-bottom: 0.5rem;
+}
+
+.armorPrimary {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  margin-bottom: 0.6rem;
+}
+
+.armorCopy {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--mid);
+  margin-bottom: 1.1rem;
+}
+
+.armorCta {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #3fa34d;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.armorCta:hover {
+  color: var(--dark);
+  border-bottom-color: currentColor;
+}
+
+.armorCta:focus-visible {
+  outline: 2px solid #3fa34d;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.brainMarker,
+.compassMarker,
+.swordMarker,
+.armorMarker {
+  display: none;
+}
+
+.connectorSvg,
+.swordConnectorCompact,
+.swordConnectorWide,
+.armorConnectorCompact,
+.armorConnectorWide {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .page {
+    padding: 0 2rem 5rem;
+  }
+  .hero {
+    padding-top: 4.5rem;
+  }
+  .brainWrap {
+    margin-top: 2.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .brainImage {
+    width: clamp(360px, 34vw, 560px);
+  }
+
+  .lantern {
+    position: absolute;
+    top: 15%;
+    left: 0;
+    width: 250px;
+    max-width: none;
+    margin: 0;
+  }
+
+  .compass {
+    position: absolute;
+    top: 15%;
+    right: 0;
+    width: 250px;
+    max-width: none;
+    margin: 0;
+  }
+
+  .sword {
+    position: absolute;
+    /* Mirrors Armor's formula (see below) on the opposite side, so
+       Lantern/Sword and Compass/Armor form matching left/right columns. */
+    top: calc(15% + 313px);
+    left: 0;
+    width: 250px;
+    max-width: none;
+    margin: 0;
+  }
+
+  .armor {
+    position: absolute;
+    /* Anchored the same distance from the top as Compass (15%), plus a
+       fixed pixel offset that clears Compass's own rendered height with
+       a consistent gap — a pure "top: X%" value can't do this because
+       the annotation cards are a fixed height while the brain (and so
+       the percentage baseline) is not, which caused Armor to overlap
+       Compass at smaller desktop widths. */
+    top: calc(15% + 313px);
+    right: 0;
+    width: 250px;
+    max-width: none;
+    margin: 0;
+  }
+
+  .brainMarker {
+    display: block;
+    position: absolute;
+    top: 30%;
+    left: 42%;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.3), 0 1px 5px rgba(20, 18, 16, 0.3);
+    transform: translate(-50%, -50%);
+  }
+
+  .compassMarker {
+    display: block;
+    position: absolute;
+    top: 30%;
+    left: 58%;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #1c7ed6;
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 4px rgba(28, 126, 214, 0.3), 0 1px 5px rgba(20, 18, 16, 0.3);
+    transform: translate(-50%, -50%);
+  }
+
+  .swordMarker {
+    display: block;
+    position: absolute;
+    bottom: 22%;
+    left: 42%;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #d6423e;
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 4px rgba(214, 66, 62, 0.3), 0 1px 5px rgba(20, 18, 16, 0.3);
+    transform: translate(-50%, 50%);
+  }
+
+  .armorMarker {
+    display: block;
+    position: absolute;
+    bottom: 22%;
+    left: 58%;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #3fa34d;
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 4px rgba(63, 163, 77, 0.3), 0 1px 5px rgba(20, 18, 16, 0.3);
+    transform: translate(-50%, 50%);
+  }
+
+  .connectorSvg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  /* Armor's card uses a mixed px/% "top" value (see .armor above) so a
+     single percentage-based line start point can't track it accurately
+     across the whole desktop range. Swap in a second, more sharply
+     angled variant for the narrower end of the range where the gap
+     between Compass's bottom edge and Armor's top is largest relative
+     to the brain. */
+  .swordConnectorCompact,
+  .armorConnectorCompact {
+    display: inline;
+  }
+}
+
+@media (min-width: 1440px) {
+  .swordConnectorCompact,
+  .armorConnectorCompact {
+    display: none;
+  }
+
+  .swordConnectorWide,
+  .armorConnectorWide {
+    display: inline;
+  }
+}
+
+.footer {
+  margin-top: 3.5rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Armor and Sword render as fixed-height cards positioned below Compass
+   and Lantern, while brainStage's own height (driven by the brain image)
+   is comparatively short in the lower half of the desktop range. Without
+   extra top margin here, the footer would render underneath the bottom
+   of those cards. Sword's copy wraps one line taller than Armor's, so
+   the value below is sized to clear Sword (the taller of the two) with
+   a comfortable margin. This only affects this page's own footer. */
+@media (min-width: 1024px) {
+  .footer {
+    margin-top: 320px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .footer {
+    margin-top: 215px;
+  }
+}

@@ -19,6 +19,9 @@ export default function NavBar({ belt }) {
       <a href="/workout" className={styles.link} style={{ color: text }}>
         Workout
       </a>
+      <a href="/training-floor" className={styles.link} style={{ color: text }}>
+        Training Floor
+      </a>
       <a href="/why" className={styles.link} style={{ color: text }}>
         Why MentalFu
       </a>
