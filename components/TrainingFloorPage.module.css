@@ -545,21 +545,100 @@
   color: var(--muted);
 }
 
+/* ─── "Why We Train" section ──────────────────────────────────────── */
+
+.whyTrain {
+  width: 100%;
+  margin-top: 3.25rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+}
+
+.whyTrainInner {
+  width: 100%;
+  max-width: 720px;
+  text-align: center;
+}
+
+.whyTrainTitle {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 5vw, 2.3rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 1.75rem;
+}
+
+.whyTrainBody {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.whyTrainBody p {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--dark);
+  margin-bottom: 1.15rem;
+}
+
+.whyTrainBody p:last-child {
+  margin-bottom: 0;
+}
+
+.trainPunch {
+  font-weight: 600;
+  color: var(--black);
+}
+
+.pullQuote {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 3vw, 1.5rem);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--black);
+  max-width: 540px;
+  margin: 2rem auto;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+@media (min-width: 640px) {
+  .whyTrain {
+    margin-top: 4rem;
+  }
+  .pullQuote {
+    margin: 2.5rem auto;
+    padding: 1.75rem 0;
+  }
+}
+
 /* Armor and Sword render as fixed-height cards positioned below Compass
    and Lantern, while brainStage's own height (driven by the brain image)
-   is comparatively short in the lower half of the desktop range. Without
-   extra top margin here, the footer would render underneath the bottom
-   of those cards. Sword's copy wraps one line taller than Armor's, so
-   the value below is sized to clear Sword (the taller of the two) with
-   a comfortable margin. This only affects this page's own footer. */
+   is comparatively short in the lower half of the desktop range. This
+   section follows brainStage in normal flow, so without extra top
+   margin (not padding — the divider border needs to clear the cards
+   too, not just the text after it) it would render underneath, and its
+   border-top divider would cut across the bottom of those cards. Sword's
+   copy wraps one line taller than Armor's, so the value below is sized
+   to clear Sword (the taller of the two) with a comfortable margin. */
 @media (min-width: 1024px) {
-  .footer {
+  .whyTrain {
     margin-top: 320px;
   }
 }
 
 @media (min-width: 1440px) {
-  .footer {
+  .whyTrain {
     margin-top: 215px;
   }
 }

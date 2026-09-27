@@ -194,6 +194,58 @@ export default function TrainingFloorPage() {
           </svg>
         </section>
 
+        <section className={styles.whyTrain}>
+          <div className={styles.whyTrainInner}>
+            <h2 className={styles.whyTrainTitle}>
+              You Train Your Body. Why Not Your Mind?
+            </h2>
+            <div className={styles.whyTrainBody}>
+              <p>
+                We understand that physical strength takes training. Want
+                stronger shoulders? You work them. Better endurance? You
+                train for it. Nobody expects to walk into a gym once and come
+                out fit.
+              </p>
+              <p className={styles.trainPunch}>
+                Your mind isn&rsquo;t so different.
+              </p>
+
+              <blockquote className={styles.pullQuote}>
+                We train our bodies to handle physical demands. Why do we
+                expect our minds to handle life without training?
+              </blockquote>
+
+              <p>
+                Every day you rely on your ability to stay focused, make good
+                decisions, take action, handle pressure, recover from
+                setbacks and recognize when your own thinking is getting in
+                the way. Yet most of us were never taught to train any of it.
+                We just expect our minds to perform.
+              </p>
+              <p>
+                And we&rsquo;re asking more from them than ever. Endless
+                information. Constant distraction. Changing technology. Work
+                pressure. Financial pressure. Relationships. Uncertainty. A
+                world competing for your attention from the moment you wake
+                up.
+              </p>
+              <p className={styles.trainPunch}>
+                A strong mind isn&rsquo;t about becoming harder. It&rsquo;s
+                about becoming more capable.
+              </p>
+              <p>
+                That&rsquo;s what the Training Floor is for. MentalFu takes
+                useful ideas and practices from psychology, philosophy,
+                therapy, contemplative traditions and lived experience — and
+                turns them into something you can actually practice.
+              </p>
+              <p className={styles.trainPunch}>
+                Pick a Form. Do the workout. Get your reps in.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <footer className={styles.footer}>MentalFu</footer>
       </main>
     </>
