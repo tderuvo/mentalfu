@@ -14,7 +14,11 @@ export default function NavBar({ belt }) {
       }}
     >
       <a href="/" className={styles.logoLink} aria-label="MentalFu — home">
-        <img src="/ninefold-logo.png" alt="" className={styles.logo} />
+        <img
+          src="/mentalfu-brain-kick-symbol-simple.png"
+          alt="MentalFu - Train Your Mind"
+          className={styles.logo}
+        />
       </a>
       <a href="/workout" className={styles.link} style={{ color: text }}>
         Workout
