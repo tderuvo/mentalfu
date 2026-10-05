@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useUtms } from "@/lib/utm";
 import styles from "./KitSignup.module.css";
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -37,24 +38,26 @@ export default function KitSignup({
   copy = "Get MentalFu updates, new workouts and training alerts.",
   id = "join",
 }) {
+  const [, ready] = useUtms();
   const embedRef = useRef(null);
   const hasEmbed = Boolean(KIT_EMBED.uid && KIT_EMBED.src);
 
   useEffect(() => {
     const container = embedRef.current;
-    if (!hasEmbed || !container) return;
+    // Load Kit only after the first client render settles — the same timing
+    // as the implementation that was confirmed submitting to Kit.
+    if (!hasEmbed || !ready || !container) return;
 
     const script = document.createElement("script");
     script.async = true;
     script.dataset.uid = KIT_EMBED.uid;
     script.src = KIT_EMBED.src;
-    // Same element Kit's snippet would be: Kit swaps this script for its form.
     container.appendChild(script);
 
     return () => {
       container.innerHTML = "";
     };
-  }, [hasEmbed]);
+  }, [hasEmbed, ready]);
 
   return (
     <section id={id} className={styles.section}>
