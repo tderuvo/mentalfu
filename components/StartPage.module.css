@@ -1,0 +1,323 @@
+/* /start campaign page. Mirrors HomePage.module.css (hero, section rhythm,
+   eyebrow/lead/punch type, gold CTA) and tightens the hero so START A
+   WORKOUT sits above the fold on a phone. */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+/* Hero */
+
+.hero {
+  position: relative;
+  width: 100%;
+  /* Viewport minus the sticky NavBar, so the CTAs land in the first screen. */
+  min-height: calc(100svh - 57px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--black);
+}
+
+.heroImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(8, 8, 8, 0.94) 0%,
+    rgba(8, 8, 8, 0.6) 50%,
+    rgba(8, 8, 8, 0.2) 80%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 4rem 1.25rem 2rem;
+  text-align: center;
+  color: var(--white);
+}
+
+.heroWordmark {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
+  color: var(--gold-lt);
+  margin-bottom: 1rem;
+}
+
+.heroCopyPending {
+  visibility: hidden;
+}
+
+.heroCopyReady {
+  animation: heroCopyIn 0.35s ease both;
+}
+
+@keyframes heroCopyIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.heroHeadline {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 11vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.heroSub {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+  line-height: 1.5;
+  color: #E4E1DB;
+  max-width: 480px;
+  margin: 0 auto 1.75rem;
+}
+
+.heroActions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.textLink {
+  display: inline-block;
+  margin-top: 1.1rem;
+  padding: 0.5rem;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #B8B4AC;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.textLink:hover {
+  color: var(--white);
+}
+
+/* Buttons — .cta is the site's gold button from HomePage.module.css */
+
+.cta {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  padding: 1.1rem 3rem;
+  border-radius: 3px;
+  text-align: center;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.cta:hover {
+  background: var(--gold-lt);
+  transform: translateY(-2px);
+}
+
+.ctaSecondary {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  padding: calc(1.1rem - 2px) 3rem;
+  border-radius: 3px;
+  text-align: center;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.ctaSecondary:hover {
+  border-color: var(--gold-lt);
+  color: var(--gold-lt);
+}
+
+/* Shared section rhythm */
+
+.section {
+  width: 100%;
+  padding: 4.5rem 1.25rem;
+  text-align: center;
+  scroll-margin-top: 57px;
+}
+
+.light {
+  background: var(--white);
+  color: var(--dark);
+}
+
+.dark {
+  background: var(--black);
+  color: var(--white);
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: clamp(1.6rem, 5.5vw, 2.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  max-width: 780px;
+  margin: 0 auto 1.5rem;
+}
+
+.light .eyebrow { color: var(--black); }
+.dark .eyebrow { color: var(--white); }
+
+.lead {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto 1rem;
+}
+
+.light .lead { color: var(--mid); }
+.dark .lead { color: #D8D5CE; margin-bottom: 2rem; }
+
+.punch {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(1.3rem, 3.5vw, 1.75rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  max-width: 620px;
+  margin: 1.25rem auto;
+  color: var(--black);
+}
+
+/* Four Mental Forms of Strength */
+
+.formGrid {
+  list-style: none;
+  width: 100%;
+  max-width: 960px;
+  margin: 2.5rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.formCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  height: 100%;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--form-accent);
+  border-radius: 4px;
+  padding: 1.5rem 0.75rem 1.25rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.formCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(20, 18, 16, 0.08);
+}
+
+.formIcon {
+  width: 34px;
+  height: 34px;
+  color: var(--form-accent);
+  margin-bottom: 0.4rem;
+}
+
+.formName {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--form-accent);
+}
+
+.formTitle {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--black);
+}
+
+.floorLink {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.5rem;
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+  border-bottom: 2px solid var(--gold);
+}
+
+.footer {
+  padding: 3rem 1.5rem 3.5rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--white);
+}
+
+@media (min-width: 480px) {
+  .hero { min-height: calc(100svh - 69px); }
+  .section { scroll-margin-top: 69px; }
+}
+
+@media (min-width: 640px) {
+  .hero { min-height: calc(100svh - 77px); }
+  .section {
+    padding: 6rem 2rem;
+    scroll-margin-top: 77px;
+  }
+  .heroContent {
+    padding: 8rem 2rem 4rem;
+  }
+  .heroActions {
+    flex-direction: row;
+    justify-content: center;
+    max-width: none;
+  }
+  .formGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+}

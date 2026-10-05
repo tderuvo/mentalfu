@@ -8,7 +8,8 @@ export default function WorkoutRedirect({ slugs }) {
 
   useEffect(() => {
     const slug = slugs[Math.floor(Math.random() * slugs.length)];
-    router.replace(`/workout/${slug}`);
+    // Keep any query string (e.g. UTMs from /start) through the redirect.
+    router.replace(`/workout/${slug}${window.location.search}`);
   }, [slugs, router]);
 
   return null;
