@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useUtms } from "@/lib/utm";
 import styles from "./KitSignup.module.css";
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -27,55 +26,35 @@ const KIT_EMBED = {
   src: "https://mentalfu.kit.com/707a7c453c/index.js",
 };
 
-// Attribution: once Kit's form is in the page, a hidden input is added for
-// each UTM the visitor arrived with, named fields[utm_source] etc. Kit maps
-// fields[<key>] onto the subscriber custom field with that key, so create
-// custom fields in Kit named utm_source, utm_medium, utm_campaign,
-// utm_content and utm_term for these to be saved.
-function addUtmFields(form, utms) {
-  for (const [key, value] of Object.entries(utms)) {
-    const name = `fields[${key}]`;
-    let input = form.querySelector(`input[name="${name}"]`);
-    if (!input) {
-      input = document.createElement("input");
-      input.type = "hidden";
-      input.name = name;
-      form.appendChild(input);
-    }
-    input.value = value;
-  }
-}
+// Attribution is left entirely to Kit. On submit, Kit's own script
+// (f.convertkit.com/ckjs/ck.5.js) posts the page URL (document.location.href),
+// its query string (document.location.search) and document.referrer with the
+// form. /start never rewrites its URL, so the visitor's utm_* parameters are
+// still in it at that moment. Nothing is added to or changed in Kit's form.
 
 export default function KitSignup({
   heading = "Join the Dojo",
   copy = "Get MentalFu updates, new workouts and training alerts.",
   id = "join",
 }) {
-  const [utms, ready] = useUtms();
   const embedRef = useRef(null);
   const hasEmbed = Boolean(KIT_EMBED.uid && KIT_EMBED.src);
 
   useEffect(() => {
     const container = embedRef.current;
-    if (!hasEmbed || !ready || !container) return;
+    if (!hasEmbed || !container) return;
 
     const script = document.createElement("script");
     script.async = true;
     script.dataset.uid = KIT_EMBED.uid;
     script.src = KIT_EMBED.src;
+    // Same element Kit's snippet would be: Kit swaps this script for its form.
     container.appendChild(script);
 
-    // Kit renders its form asynchronously; tag it with UTMs as it appears.
-    const observer = new MutationObserver(() => {
-      container.querySelectorAll("form").forEach((form) => addUtmFields(form, utms));
-    });
-    observer.observe(container, { childList: true, subtree: true });
-
     return () => {
-      observer.disconnect();
       container.innerHTML = "";
     };
-  }, [hasEmbed, ready, utms]);
+  }, [hasEmbed]);
 
   return (
     <section id={id} className={styles.section}>
