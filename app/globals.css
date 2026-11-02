@@ -19,6 +19,10 @@
   --crimson:  #4E5B3A;
   --olive-lt: #7A8763;
 
+  /* Training-card palette (matches the YouTube quote cards) */
+  --paper:    #EEE2C5;
+  --ink-red:  #C42C20;
+
   --serif:    'Playfair Display', Georgia, serif;
   --sans:     'Inter', -apple-system, sans-serif;
 }

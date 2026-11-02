@@ -35,6 +35,15 @@ completion:
 
 # Dodge the Punch
 
+Ever replay a conversation in your head and suddenly you're arguing with someone who's not even there? Ever see one email, one look, one comment — and your mind spends the next half hour building a whole story around it?
+Ever wake up at 2:00 a.m. and your brain decides now is the perfect time to solve your finances, your relationship, your future, and something embarrassing you said six years ago?
+
+Negative thoughts can come at you like a punch. And just like a punch, there are things you can do. You can block. You can counter. Or you can dodge.
+
+Today we're practicing the dodge. Sometimes you can be your own worst opponent. A persistent negative thought can feel like it’s dragging you into a fight you never agreed to have — and once you engage, it can steal your attention, your energy, and sometimes a good part of your day.
+
+Imagine how your day changes if you get good enough at bobbing and weaving that some of those thoughts never get the chance to drag you into a fight.
+
 Thoughts can be like weather.
 
 Some are sunny. Some are cloudy. Some drift through like a little rain and disappear before you pay much attention to them. And then there are the thoughts that don't feel like weather at all.

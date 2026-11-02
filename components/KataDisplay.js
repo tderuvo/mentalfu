@@ -4,14 +4,58 @@ import { useEffect, useRef, useState } from "react";
 import NavBar from "./NavBar";
 import styles from "./KataDisplay.module.css";
 
+const SPEECH_BLOCKS = "h1, h2, h3, h4, h5, h6, p, li, blockquote, pre";
+
+// Turn the kata's rendered markdown into speakable chunks, one per block,
+// so headings get a natural pause and long katas don't hit browser cutoffs.
+function getSpeechChunks(kata) {
+  const doc = new DOMParser().parseFromString(kata.html, "text/html");
+  const chunks = [kata.title];
+
+  doc.body.querySelectorAll(SPEECH_BLOCKS).forEach((el) => {
+    // Skip containers whose text is already covered by a nested block.
+    if (el.querySelector(SPEECH_BLOCKS)) return;
+    const text = el.textContent.replace(/\s+/g, " ").trim();
+    if (text) chunks.push(text);
+  });
+
+  return chunks.map((text) => (/[.!?:;…]$/.test(text) ? text : `${text}.`));
+}
+
 export default function KataDisplay({ kata }) {
   const [topVisible, setTopVisible] = useState(true);
   const [bottomVisible, setBottomVisible] = useState(false);
   const [printDate, setPrintDate] = useState("");
   const [copied, setCopied] = useState(false);
+  const [speechSupported, setSpeechSupported] = useState(true);
+  const [speaking, setSpeaking] = useState(false);
 
   const topSentinelRef = useRef(null);
   const bottomSentinelRef = useRef(null);
+  const speechSessionRef = useRef(0);
+
+  useEffect(() => {
+    setSpeechSupported(
+      "speechSynthesis" in window && "SpeechSynthesisUtterance" in window
+    );
+  }, []);
+
+  // Stop speech when switching katas, leaving the page, or unmounting.
+  useEffect(() => {
+    if (!("speechSynthesis" in window)) return;
+
+    const stop = () => {
+      speechSessionRef.current += 1;
+      window.speechSynthesis.cancel();
+      setSpeaking(false);
+    };
+
+    window.addEventListener("pagehide", stop);
+    return () => {
+      window.removeEventListener("pagehide", stop);
+      stop();
+    };
+  }, [kata.slug]);
 
   useEffect(() => {
     setPrintDate(
@@ -49,6 +93,44 @@ export default function KataDisplay({ kata }) {
   const trainsVisible = bottomVisible && !topVisible;
 
   const handlePrint = () => window.print();
+
+  const handleListen = () => {
+    if (!("speechSynthesis" in window)) return;
+    const synth = window.speechSynthesis;
+
+    // Any click cancels what's playing; a click while speaking just stops.
+    speechSessionRef.current += 1;
+    synth.cancel();
+    if (speaking) {
+      setSpeaking(false);
+      return;
+    }
+
+    const session = speechSessionRef.current;
+    const finish = () => {
+      if (speechSessionRef.current !== session) return;
+      speechSessionRef.current += 1;
+      setSpeaking(false);
+    };
+
+    try {
+      const chunks = getSpeechChunks(kata);
+      chunks.forEach((text, i) => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.95;
+        utterance.onerror = () => {
+          if (speechSessionRef.current !== session) return;
+          synth.cancel();
+          finish();
+        };
+        if (i === chunks.length - 1) utterance.onend = finish;
+        synth.speak(utterance);
+      });
+      setSpeaking(true);
+    } catch {
+      finish();
+    }
+  };
 
   const copyShareLink = async (url) => {
     try {
@@ -140,6 +222,47 @@ export default function KataDisplay({ kata }) {
                   </span>
                 )}
               </div>
+              {speechSupported && (
+                <button
+                  type="button"
+                  onClick={handleListen}
+                  className={`${styles.iconButton} ${
+                    speaking ? styles.iconButtonActive : ""
+                  }`}
+                  aria-label={speaking ? "Stop listening" : "Listen to this Kata"}
+                  title={speaking ? "Stop listening" : "Listen to this Kata"}
+                  aria-pressed={speaking}
+                >
+                  {speaking ? (
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <rect x="6" y="6" width="12" height="12" rx="1" />
+                    </svg>
+                  ) : (
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                    </svg>
+                  )}
+                </button>
+              )}
               <button
                 type="button"
                 onClick={handlePrint}
